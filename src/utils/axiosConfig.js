@@ -9,6 +9,9 @@ const api = axios.create({
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'projectId': '66e69775547fecea4596d224',
+        'environmentId': '66e69775547fecea4596d225',
+
     },
 });
 
