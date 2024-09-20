@@ -87,7 +87,7 @@ const AboutUs = () => {
         <Box sx={{ maxWidth: 1200, margin: "auto", textAlign: "center" }}>
           {/* Original About Us Content */}
           <Typography variant="h4" gutterBottom fontWeight="bold">
-            About Us
+            About Us Page
           </Typography>
           <Typography variant="body1" sx={{ marginBottom: 4 }}>
             Our mission is to lead the industry in creating value for ourselves
