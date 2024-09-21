@@ -7,7 +7,7 @@ const footerLinks = [
     links: [
       { name: "About us", link: "/about-us" },
       { name: "Services", link: "/services" },
-      { name: "Blog", link: "/blog" },
+      // { name: "Blog", link: "/blog" },
       { name: "Upcoming Movies", link: "/upcoming-movies" },
     ],
   },
