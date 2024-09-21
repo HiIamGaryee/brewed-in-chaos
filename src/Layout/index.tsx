@@ -13,17 +13,15 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <Box
       sx={{
-        backgroundColor: "#1a1a1a",
+        backgroundColor: "light.main",
         display: "flex",
         flexDirection: "column",
         color: "white",
-        // overflowY: "hidden",
         height: "100vh",
         overflowY: "auto",
       }}
     >
       <Navbar />
-      {/* <Sidebar /> */}
       <Box sx={{ width: "100%", flexGrow: 1, overflowY: "auto" }}>
         {children}
         <Footer />

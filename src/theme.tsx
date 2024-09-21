@@ -22,59 +22,45 @@ const getTheme = (mode: any) =>
     palette: {
       mode,
       primary: {
-        main: "#2196f3", // Example blue for primary color
-        light: "#6ec6ff",
-        dark: "#1a1a1a",
-        contrastText: "#ffffff", // White text on primary color
+        main: mode === "light" ? "#e2994f" : "#FFFFFF", // Brown for light mode, White for dark mode
+        light: "#A67C52",
+        dark: "#6D4C41",
+        contrastText: mode === "light" ? "#FFFFFF" : "#333333", // White text on primary color in light mode, dark text in dark mode
       },
       secondary: {
-        main: "#C0C0C0", // Example main for secondary color
-        light: "#ffc947",
-        dark: "#c66900",
-        contrastText: "#ffffff", // White text on secondary color
+        main: mode === "light" ? "#f7f3f0" : "#676767", // Light grey for light mode, grey for dark mode
+        light: "#FFD700",
+        dark: "#B7950B",
+        contrastText: "#FFFFFF", // White text on secondary color
+      },
+      light: {
+        main: "#F5F3EF", // Main light background color (white background color)
+        light: "#FFFFFF",
+        dark: "#EDE7E0",
+      },
+      dark: {
+        main: "#18100e", // Main dark background color
+        light: "#514c4b",
+        dark: "#1A1A1A",
       },
 
-      light:
-        mode === "dark"
-          ? {
-              main: "#fff", // white color
-              light: "#e57373",
-              dark: "#d32f2f",
-            }
-          : {
-              main: "#000", // black color for light mode
-              light: "#e57373",
-              dark: "#d32f2f",
-            },
-      dark:
-        mode === "dark"
-          ? {
-              main: "#000", // black color for light mode
-              light: "#e57373",
-              dark: "#d32f2f",
-            }
-          : {
-              main: "#fff", // white color for dark mode
-              light: "#e57373",
-              dark: "#d32f2f",
-            },
       error: {
-        main: "#f44336", // Red for error
+        main: "#f44336", // Red for errors
         light: "#e57373",
         dark: "#d32f2f",
       },
       warning: {
-        main: "#ff9800", // Orange for warning
+        main: "#ff9800", // Orange for warnings
         light: "#ffb74d",
         dark: "#f57c00",
       },
       info: {
-        main: "#2196f3", // Informational messages use a blue
+        main: mode === "light" ? "#2196f3" : "#BBDEFB", // Light blue for information in light mode, softer in dark mode
         light: "#64b5f6",
         dark: "#1976d2",
       },
       success: {
-        main: "#4caf50", // Green for success
+        main: "#4caf50", // Green for successes
         light: "#81c784",
         dark: "#388e3c",
       },
@@ -86,7 +72,7 @@ const getTheme = (mode: any) =>
         },
         styleOverrides: {
           root: {
-            padding: "4px",
+            // padding: "20px",
             backgroundColor: "#ffcdaa", // Light grey background
             "&.table-paper": {
               boxShadow: "none",
@@ -128,10 +114,11 @@ const getTheme = (mode: any) =>
       MuiButton: {
         styleOverrides: {
           root: {
-            background: "#000000",
-            color: "#fff",
+            background: "#e2994f",
+            color: "#F5F3EF",
+            borderRadius: "28px",
             "&:hover": {
-              background: "linear-gradient(90deg, #000000 0%, #333333 100%)",
+              background: "#c17d39",
             },
             "&.Mui-disabled": {
               color: "#666",
@@ -153,7 +140,7 @@ const getTheme = (mode: any) =>
       MuiTypography: {
         styleOverrides: {
           root: {
-            color: "#e0f7fa",
+            color: "#18100e",
           },
         },
       },

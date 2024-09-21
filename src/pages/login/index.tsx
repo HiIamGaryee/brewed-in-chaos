@@ -51,7 +51,7 @@ const Login = () => {
         color: "#fff",
       }}
     >
-      <Paper sx={{ minWidth: "300px" }}>
+      <Paper sx={{ minWidth: "300px", backgroundColor: "light.main" }}>
         <img
           src="/logo.png"
           alt="Logo"

@@ -45,7 +45,6 @@ const Footer = () => {
         alt="Logo"
         style={{ maxHeight: 50, marginRight: 16 }}
       />
-      <ThemeToggleButton />
       {footerLinks.map((section) => (
         <Box key={section.title} sx={{ flex: 1, minWidth: 200 }}>
           <Typography variant="h6" sx={{ mb: 2, color: "white" }}>
@@ -110,7 +109,7 @@ const Footer = () => {
       </Box>
       <Box sx={{ width: "100%", mt: 4, textAlign: "center" }}>
         <Typography variant="body2" sx={{ color: "white" }}>
-          © 2019 All rights reserved by Pride Heal Sdn Bhd.
+          © 2024 All rights reserved by Brewed in chaos Sdn Bhd.
         </Typography>
       </Box>
     </Box>

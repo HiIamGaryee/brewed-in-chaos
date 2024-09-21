@@ -46,7 +46,7 @@ const Home = () => {
                   }}
                 >
                   <Typography variant="h5" component="h1" fontWeight="bold">
-                    Trending
+                    Recommended For You
                   </Typography>
                   <Paper
                     component="form"
@@ -84,12 +84,6 @@ const Home = () => {
                     />
                   </Paper>
                 </Box>
-                <MovieTrendList trendingList={trendingList} />
-              </Box>
-              <Box width={1}>
-                <Typography variant="h5" component="h1" fontWeight="bold">
-                  Recommended For You
-                </Typography>
                 <MovieList recommendList={recommendList} />
               </Box>
             </Stack>

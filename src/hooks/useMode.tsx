@@ -5,7 +5,7 @@ import { Theme } from "@mui/material/styles";
 const useMode = () => {
   const [mode, setMode] = useState<"light" | "dark">(() => {
     const savedMode = localStorage.getItem("themeMode");
-    return savedMode ? (savedMode as "light" | "dark") : "dark";
+    return savedMode ? (savedMode as "light" | "dark") : "light";
   });
 
   const toggleMode = () => {

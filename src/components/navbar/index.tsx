@@ -65,7 +65,7 @@ const Navbar = () => {
     <AppBar
       position="static"
       color="primary"
-      sx={{ backgroundColor: "#161d2f" }}
+      sx={{ backgroundColor: "primary.main" }}
     >
       <Toolbar>
         <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}>
