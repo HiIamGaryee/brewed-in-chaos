@@ -78,7 +78,7 @@ const ReferralPage = () => {
     <Layout>
       <Box
         sx={{
-          backgroundColor: "#1a1a1a",
+          backgroundColor: "light.main",
           color: "white",
           p: 4,
           minHeight: "100vh",
@@ -103,7 +103,7 @@ const ReferralPage = () => {
           <Grid container spacing={4}>
             {referralSwagList.map((item, index) => (
               <Grid item xs={12} md={4} key={index}>
-                <Card sx={{ backgroundColor: "#2a2a2a" }}>
+                <Card>
                   <CardContent sx={{ textAlign: "center" }}>
                     {item.img}
                     <Typography variant="h6" fontWeight="bold">
@@ -131,73 +131,71 @@ const ReferralPage = () => {
           </Grid>
           <Grid container spacing={4} mt={4}>
             <Grid item xs={12} md={6}>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  p: 3,
-                  backgroundColor: "#2a2a2a",
-                  borderRadius: 2,
-                  h: 1,
-                }}
-              >
-                <Box>
-                  <Typography variant="h5" fontWeight="bold">
-                    Referrals Overview
-                  </Typography>
-                  <Typography variant="body2" sx={{ mt: 2 }}>
-                    0 SHARES
-                  </Typography>
-                  <Divider sx={{ my: 1 }} />
-                  <Typography variant="body2">0 SIGNED UP</Typography>
-                  <Divider sx={{ my: 1 }} />
-                  <Typography variant="body2">0 SUBSCRIBED</Typography>
-                </Box>
-                <Button variant="contained" sx={{ mt: 3 }}>
-                  View details
-                </Button>
-              </Box>
+              <Card>
+                <CardContent
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    h: 1,
+                  }}
+                >
+                  <Box>
+                    <Typography variant="h5" fontWeight="bold">
+                      Referrals Overview
+                    </Typography>
+                    <Typography variant="body2" sx={{ mt: 2 }}>
+                      0 SHARES
+                    </Typography>
+                    <Divider sx={{ my: 1 }} />
+                    <Typography variant="body2">0 SIGNED UP</Typography>
+                    <Divider sx={{ my: 1 }} />
+                    <Typography variant="body2">0 SUBSCRIBED</Typography>
+                  </Box>
+                  <Button variant="contained" sx={{ mt: 3 }}>
+                    View details
+                  </Button>
+                </CardContent>
+              </Card>
             </Grid>
             <Grid item xs={12} md={6}>
-              <Box
-                sx={{
-                  p: 3,
-                  backgroundColor: "#2a2a2a",
-                  borderRadius: 2,
-                  height: "100%",
-                }}
-              >
-                <Typography variant="h5" fontWeight="bold" sx={{ mb: 2 }}>
-                  Activity Updates
-                </Typography>
-
-                <Tabs
-                  value={tabValue}
-                  onChange={handleChange}
-                  indicatorColor="primary"
-                  textColor="inherit"
-                  sx={{ mb: 2 }}
+              <Card>
+                <CardContent
+                  sx={{
+                    h: 1,
+                  }}
                 >
-                  <Tab label="Pending" />
-                  <Tab label="Joined" />
-                </Tabs>
+                  <Typography variant="h5" fontWeight="bold" sx={{ mb: 2 }}>
+                    Activity Updates
+                  </Typography>
 
-                <Box>
-                  {tabValue === 0 && (
-                    <Typography variant="body2">
-                      You have no pending invites - spread the word using your
-                      unique invitation link.
-                    </Typography>
-                  )}
-                  {tabValue === 1 && (
-                    <Typography variant="body2">
-                      You have no joined invites yet - encourage your friends to
-                      join!
-                    </Typography>
-                  )}
-                </Box>
-              </Box>
+                  <Tabs
+                    value={tabValue}
+                    onChange={handleChange}
+                    indicatorColor="primary"
+                    textColor="inherit"
+                    sx={{ mb: 2 }}
+                  >
+                    <Tab label="Pending" />
+                    <Tab label="Joined" />
+                  </Tabs>
+
+                  <Box>
+                    {tabValue === 0 && (
+                      <Typography variant="body2">
+                        You have no pending invites - spread the word using your
+                        unique invitation link.
+                      </Typography>
+                    )}
+                    {tabValue === 1 && (
+                      <Typography variant="body2">
+                        You have no joined invites yet - encourage your friends
+                        to join!
+                      </Typography>
+                    )}
+                  </Box>
+                </CardContent>
+              </Card>
             </Grid>
           </Grid>
         </Box>
@@ -206,120 +204,116 @@ const ReferralPage = () => {
           <Typography variant="h4" fontWeight="bold" sx={{ mb: 2 }}>
             Your Referral Stats
           </Typography>
-          <Box
-            sx={{
-              backgroundColor: "#2a2a2a",
-              color: "white",
-              p: 4,
-              borderRadius: 2,
-            }}
-          >
-            <Typography variant="body1" sx={{ mb: 2 }}>
-              Who’s a great addition to the community? Invite them to learn and
-              earn karma to unlock new benefits (i.e. courses).
-            </Typography>
 
-            {/* Email Input and Invite Button */}
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                mb: 4,
-                flexWrap: "wrap",
-              }}
-            >
-              <TextField
-                placeholder="Enter email addresses"
-                variant="outlined"
-                fullWidth
-                sx={{
-                  backgroundColor: "#333",
-                  color: "white",
-                  flex: 2,
-                  marginRight: 2,
-                  borderRadius: 2,
-                  mb: { xs: 2, md: 0 },
-                  input: { color: "white" },
-                }}
-              />
-              <Button
-                variant="contained"
-                sx={{
-                  p: "10px 20px",
-                  flex: 1,
-                  maxWidth: "200px",
-                }}
-              >
-                Send invites
-              </Button>
-            </Box>
+          <Card>
+            <CardContent>
+              <Typography variant="body1" sx={{ mb: 2 }}>
+                Who’s a great addition to the community? Invite them to learn
+                and earn karma to unlock new benefits (i.e. courses).
+              </Typography>
 
-            {/* Share Invitation Link */}
-            <Typography variant="body1" sx={{ mb: 2 }}>
-              Share unique invitation link
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                mb: 4,
-                flexWrap: "wrap",
-                backgroundColor: "#333",
-                borderRadius: 2,
-                p: 1,
-              }}
-            >
-              <TextField
-                fullWidth
-                variant="outlined"
-                value="https://adplist.org/invite/123116"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton sx={{ color: "white" }}>
-                        <ContentCopyIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                  sx: { color: "white" },
-                }}
-                sx={{
-                  backgroundColor: "transparent",
-                  color: "white",
-                  flex: 3,
-                  borderRadius: 2,
-                  input: { color: "white" },
-                }}
-              />
+              {/* Email Input and Invite Button */}
               <Box
                 sx={{
                   display: "flex",
-                  gap: 2,
+                  alignItems: "center",
+                  mb: 4,
+                  flexWrap: "wrap",
                 }}
               >
+                <TextField
+                  placeholder="Enter email addresses"
+                  variant="outlined"
+                  fullWidth
+                  sx={{
+                    backgroundColor: "#333",
+                    color: "white",
+                    flex: 2,
+                    marginRight: 2,
+                    borderRadius: 2,
+                    mb: { xs: 2, md: 0 },
+                    input: { color: "white" },
+                  }}
+                />
                 <Button
                   variant="contained"
                   sx={{
-                    backgroundColor: "#0077b5",
-                    minWidth: 48,
-                    minHeight: 48,
+                    p: "10px 20px",
+                    flex: 1,
+                    maxWidth: "200px",
                   }}
                 >
-                  <LinkedInIcon />
-                </Button>
-                <Button
-                  variant="contained"
-                  sx={{
-                    backgroundColor: "#1DA1F2",
-                    minWidth: 48,
-                    minHeight: 48,
-                  }}
-                >
-                  <TwitterIcon />
+                  Send invites
                 </Button>
               </Box>
-            </Box>
-          </Box>
+
+              {/* Share Invitation Link */}
+              <Typography variant="body1" sx={{ mb: 2 }}>
+                Share unique invitation link
+              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  mb: 4,
+                  flexWrap: "wrap",
+                  backgroundColor: "#333",
+                  borderRadius: 2,
+                  p: 1,
+                }}
+              >
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  value="https://adplist.org/invite/123116"
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton sx={{ color: "white" }}>
+                          <ContentCopyIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                    sx: { color: "white" },
+                  }}
+                  sx={{
+                    backgroundColor: "transparent",
+                    color: "white",
+                    flex: 3,
+                    borderRadius: 2,
+                    input: { color: "white" },
+                  }}
+                />
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: 2,
+                  }}
+                >
+                  <Button
+                    variant="contained"
+                    sx={{
+                      backgroundColor: "#0077b5",
+                      minWidth: 48,
+                      minHeight: 48,
+                    }}
+                  >
+                    <LinkedInIcon />
+                  </Button>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      backgroundColor: "#1DA1F2",
+                      minWidth: 48,
+                      minHeight: 48,
+                    }}
+                  >
+                    <TwitterIcon />
+                  </Button>
+                </Box>
+              </Box>
+            </CardContent>
+          </Card>
         </Box>
         <Box sx={{ mt: 6 }}>
           <Typography variant="h4" fontWeight="bold" sx={{ mb: 2 }}>
@@ -328,23 +322,14 @@ const ReferralPage = () => {
           <Grid container spacing={4}>
             {referralStepList.map((step, index) => (
               <Grid item xs={12} md={4} key={index}>
-                <Box
-                  sx={{
-                    backgroundColor: "#2a2a2a",
-                    p: 3,
-                    borderRadius: 2,
-                    textAlign: "center",
-                    h: 1,
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Typography variant="h6" fontWeight="bold">
-                    {step.title}
-                  </Typography>
-                  <Typography variant="body2">{step.description}</Typography>
-                </Box>
+                <Card sx={{ h: 1 }}>
+                  <CardContent sx={{ textAlign: "center" }}>
+                    <Typography variant="h6" fontWeight="bold">
+                      {step.title}
+                    </Typography>
+                    <Typography variant="body2">{step.description}</Typography>
+                  </CardContent>
+                </Card>
               </Grid>
             ))}
           </Grid>

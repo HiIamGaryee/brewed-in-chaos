@@ -87,7 +87,7 @@ const ServicesPage = () => {
     <Layout>
       <Box
         sx={{
-          backgroundColor: "#1a1a1a",
+          backgroundColor: "light.main",
           color: "light.main",
           minHeight: "100vh",
           padding: "50px 20px",

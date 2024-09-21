@@ -41,7 +41,7 @@ const getTheme = (mode: any) =>
       dark: {
         main: "#18100e", // Main dark background color
         light: "#514c4b",
-        dark: "#1A1A1A",
+        dark: "light.main",
       },
 
       error: {
@@ -130,7 +130,7 @@ const getTheme = (mode: any) =>
       MuiCard: {
         styleOverrides: {
           root: {
-            backgroundColor: "#2a2a2a",
+            backgroundColor: "#f7f3f0",
             padding: "24px",
             borderRadius: "16px",
             height: "100%",

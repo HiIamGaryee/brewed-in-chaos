@@ -78,8 +78,8 @@ const PackagePage = () => {
     <Layout>
       <Box
         sx={{
-          backgroundColor: "#1a1a1a",
-          color: "white",
+          backgroundColor: "light.main",
+
           p: 4,
           minHeight: "100vh",
         }}
@@ -127,20 +127,13 @@ const PackagePage = () => {
                 }}
               >
                 <CardContent>
-                  <Typography variant="body2" color="white">
-                    {pkg.customers}
-                  </Typography>
-                  <Typography
-                    variant="h4"
-                    fontWeight="bold"
-                    sx={{ mb: 1 }}
-                    color="white"
-                  >
+                  <Typography variant="body2">{pkg.customers}</Typography>
+                  <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
                     {pricingPeriod === "monthly"
                       ? pkg.monthlyPrice
                       : pkg.annuallyPrice}
                   </Typography>
-                  <Typography variant="body1" sx={{ mb: 2 }} color="white">
+                  <Typography variant="body1" sx={{ mb: 2 }}>
                     {pkg.description}
                   </Typography>
                   <Divider sx={{ mb: 2 }} />
@@ -151,7 +144,7 @@ const PackagePage = () => {
                         style={{
                           marginBottom: "8px",
                           fontSize: "0.875rem",
-                          color: "white",
+
                           textAlign: "left",
                         }}
                       >

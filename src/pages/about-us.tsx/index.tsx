@@ -74,7 +74,7 @@ const AboutUs = () => {
     <Layout>
       <Box
         sx={{
-          backgroundColor: "#1a1a1a",
+          backgroundColor: "light.main",
           color: "white",
           padding: 4,
           minHeight: "100vh",
@@ -212,16 +212,16 @@ const AboutUs = () => {
               </Grid>
 
               <Box sx={{ display: "flex", gap: 2 }}>
-                <Link href="#" color="inherit">
+                <Link href="#">
                   <FacebookIcon />
                 </Link>
-                <Link href="#" color="inherit">
+                <Link href="#">
                   <InstagramIcon />
                 </Link>
-                <Link href="#" color="inherit">
+                <Link href="#">
                   <TwitterIcon />
                 </Link>
-                <Link href="#" color="inherit">
+                <Link href="#">
                   <LinkedInIcon />
                 </Link>
               </Box>

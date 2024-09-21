@@ -90,7 +90,7 @@ const WizardzPage = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#1a1a1a",
+        backgroundColor: "light.main",
         display: "flex",
         flexDirection: "column",
         color: "white",
@@ -137,7 +137,7 @@ const WizardzPage = () => {
       </AppBar>
       <Box
         sx={{
-          backgroundColor: "#1a1a1a",
+          backgroundColor: "light.main",
           color: "white",
           p: 4,
           minHeight: "100vh",

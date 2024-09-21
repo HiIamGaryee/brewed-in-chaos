@@ -35,7 +35,7 @@ const Bookmark = () => {
             alignItems: "center",
             borderRadius: "default",
             p: 1,
-            backgroundColor: "#1a1a1a",
+            backgroundColor: "light.main",
             border: "none",
           }}
         >

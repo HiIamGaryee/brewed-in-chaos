@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Box, Typography, TextField, Button } from "@mui/material";
-import ThemeToggleButton from "../ThemeToggleButton";
 
 const footerLinks = [
   {
@@ -15,7 +14,7 @@ const footerLinks = [
   {
     title: "HELP",
     links: [
-      { name: "Getting started", link: "/getting-started" },
+      // { name: "Getting started", link: "/getting-started" },
       { name: "Package", link: "/package" },
       { name: "FAQ", link: "/faq" },
       { name: "Referral", link: "/referral" },

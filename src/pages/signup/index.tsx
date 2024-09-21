@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { SignUpParams, postSignUp } from "../../api"; // Adjust the path as necessary
-import movieBg from "../../assets/movie-bg1.jpg";
+import loginBg from "../../assets/login-bg.jpg";
 import { useAppMutation } from "../../hooks/useAppMutation";
 import { useTranslation } from "react-i18next";
 
@@ -38,25 +38,33 @@ const SignUp = () => {
   return (
     <Box
       sx={{
-        backgroundImage: `url(${movieBg})`,
+        backgroundImage: `url(${loginBg})`,
         backgroundSize: "contain",
         height: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        color: "#fff",
       }}
     >
-      <Paper sx={{ minWidth: "300px" }}>
-        <img
-          src="/logo.png"
-          alt="Logo"
-          style={{ maxHeight: 50, marginRight: 16 }}
-        />
-        <Typography variant="h5">Sign Up</Typography>
-        <Typography variant="body2" mb={3}>
-          {t("welcome_desc")}
-        </Typography>
+      <Paper
+        sx={{
+          minWidth: "300px",
+          backgroundColor: "light.main",
+          padding: "20px",
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center", gap: "2px" }}>
+          <img
+            src="/logo.png"
+            alt="Logo"
+            style={{ maxHeight: 80, marginRight: 16 }}
+          />
+          <Box>
+            <Typography variant="h5">Sign Up</Typography>
+            <Typography variant="body2">{t("welcome_desc")}</Typography>
+          </Box>
+        </Box>
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField
             {...register("email")}

@@ -64,8 +64,7 @@ const Faq = () => {
     <Layout>
       <Box
         sx={{
-          backgroundColor: "#1a1a1a",
-          color: "white",
+          backgroundColor: "light.main",
           padding: 4,
           minHeight: "100vh",
         }}
@@ -81,14 +80,13 @@ const Faq = () => {
               expanded={expanded === `panel${index}`}
               onChange={handleChange(`panel${index}`)}
               sx={{
-                backgroundColor: "#333",
-                color: "white",
+                backgroundColor: "secondary.main",
                 border: "1px solid #444",
                 marginBottom: 2,
               }}
             >
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+                expandIcon={<ExpandMoreIcon sx={{ color: "primary.main" }} />}
                 aria-controls={`panel${index}bh-content`}
                 id={`panel${index}bh-header`}
               >

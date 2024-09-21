@@ -64,7 +64,9 @@ const UpcomingPage = () => {
 
   return (
     <Layout>
-      <Box sx={{ padding: 4, backgroundColor: "#1a1a1a", color: "light.main" }}>
+      <Box
+        sx={{ padding: 4, backgroundColor: "light.main", color: "light.main" }}
+      >
         <Typography
           variant="h3"
           align="center"
