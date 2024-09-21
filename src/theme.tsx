@@ -30,7 +30,7 @@ const getTheme = (mode: any) =>
       secondary: {
         main: mode === "light" ? "#f7f3f0" : "#676767", // Light grey for light mode, grey for dark mode
         light: "#FFD700",
-        dark: "#B7950B",
+        dark: "#8c8a88",
         contrastText: "#FFFFFF", // White text on secondary color
       },
       light: {
@@ -43,7 +43,6 @@ const getTheme = (mode: any) =>
         light: "#514c4b",
         dark: "light.main",
       },
-
       error: {
         main: "#f44336", // Red for errors
         light: "#e57373",

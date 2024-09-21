@@ -55,7 +55,7 @@ const Home = () => {
                       alignItems: "center",
                       borderRadius: "default",
                       p: 1,
-                      backgroundColor: "light.main",
+                      backgroundColor: "secondary.dark",
                       border: "none",
                       maxWidth: "150px",
                       width: "100%",
