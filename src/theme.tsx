@@ -16,6 +16,9 @@ declare module "@mui/material/styles" {
   }
 }
 
+const yesevaFont = "Yeseva One, sans-serif";
+const montserratFont = "Montserrat, sans-serif";
+
 // Function to create a theme based on the mode
 const getTheme = (mode: any) =>
   createTheme({
@@ -63,6 +66,17 @@ const getTheme = (mode: any) =>
         light: "#81c784",
         dark: "#388e3c",
       },
+    },
+    typography: {
+      fontFamily: montserratFont,
+      h1: { fontFamily: yesevaFont },
+      h2: { fontFamily: yesevaFont },
+      h3: { fontFamily: yesevaFont },
+      h4: { fontFamily: yesevaFont },
+      h5: { fontFamily: yesevaFont },
+      h6: { fontFamily: yesevaFont },
+      subtitle1: { fontFamily: yesevaFont },
+      button: { fontFamily: montserratFont },
     },
     components: {
       MuiPaper: {
