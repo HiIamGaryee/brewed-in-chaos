@@ -1,5 +1,5 @@
 import React, { useState, SetStateAction, useContext } from "react";
-import Layout from "../../Layout";
+import Layout from "../Layout";
 import {
   Box,
   Paper,
@@ -7,17 +7,17 @@ import {
   InputAdornment,
   Typography,
 } from "@mui/material";
-import SearchIcon from "../../assets/icons/icon-search.svg";
-import MovieList from "../../components/movie-list";
-import { MovieDataType } from "../../assets/data";
-import { MovieContext } from "../../context/movie-context";
+import SearchIcon from "../assets/icons/icon-search.svg";
+import MovieList from "../components/movie-list";
+import { MovieDataType } from "../assets/data";
+import { MovieContext } from "../context/movie-context";
 
-const Bookmark = () => {
+const TvSeriesPage = () => {
   const [search, setSearch] = useState("");
   const [searchList, setSearchList] = useState<MovieDataType[]>([]);
   const { state } = useContext(MovieContext);
   const { movies } = state;
-  const bookmarks = movies.filter((movie) => movie.isBookmarked);
+  const tvSeries = movies.filter((movie) => movie.category === "TV Series");
   const handleSearch = (e: { target: { value: SetStateAction<string> } }) => {
     setSearch(e.target.value);
     const newList = movies.filter((movie) =>
@@ -68,7 +68,7 @@ const Bookmark = () => {
             <Typography variant="h5" component="h1" my={6} fontWeight="bold">
               TV Series
             </Typography>
-            <MovieList recommendList={bookmarks} />
+            <MovieList recommendList={search === "" ? tvSeries : searchList} />
           </Box>
         ) : (
           <Box width={1}>
@@ -83,4 +83,4 @@ const Bookmark = () => {
   );
 };
 
-export default Bookmark;
+export default TvSeriesPage;

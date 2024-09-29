@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Typography, Paper, Button, Avatar, Stack } from "@mui/material";
-import ProfilePicture from "../../assets/profile-avatar.jpg";
-import Layout from "../../Layout";
-import LanguageSwitcher from "../../components/language";
+import ProfilePicture from "../assets/profile-avatar.jpg";
+import Layout from "../Layout";
+import LanguageSwitcher from "../components/language";
 import { useTranslation } from "react-i18next";
 
-const Profile = () => {
+const ProfilePage = () => {
   const { t } = useTranslation();
 
   return (
@@ -55,4 +55,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ProfilePage;

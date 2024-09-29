@@ -9,7 +9,7 @@ import RecommendRoundedIcon from "@mui/icons-material/RecommendRounded"; // For 
 import PlaylistAddRoundedIcon from "@mui/icons-material/PlaylistAddRounded"; // For Watchlists
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded"; // For User Profile
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"; // For Focused Card
-import Layout from "../../Layout";
+import Layout from "../Layout";
 
 const services = [
   {

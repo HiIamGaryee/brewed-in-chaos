@@ -1,5 +1,5 @@
 import React, { useState, SetStateAction, useContext } from "react";
-import Layout from "../../Layout";
+import Layout from "../Layout";
 import {
   Box,
   Paper,
@@ -8,13 +8,13 @@ import {
   Typography,
   Stack,
 } from "@mui/material";
-import SearchIcon from "../../assets/icons/icon-search.svg";
-import MovieTrendList from "../../components/movie-list/movieTrendList";
-import MovieList from "../../components/movie-list";
-import { MovieDataType } from "../../assets/data";
-import { MovieContext } from "../../context/movie-context";
+import SearchIcon from "../assets/icons/icon-search.svg";
+import MovieTrendList from "../components/movie-list/movieTrendList";
+import MovieList from "../components/movie-list";
+import { MovieDataType } from "../assets/data";
+import { MovieContext } from "../context/movie-context";
 
-const Home = () => {
+const HomePage = () => {
   const [search, setSearch] = useState("");
   const [searchList, setSearchList] = useState<MovieDataType[]>([]);
   const { state } = useContext(MovieContext);
@@ -101,4 +101,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

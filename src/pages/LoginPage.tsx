@@ -10,12 +10,12 @@ import {
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { LoginParams, postLogin } from "../../api"; // Adjust the path as necessary
-import loginBg from "../../assets/login-bg.jpg";
-import { useAppMutation } from "../../hooks/useAppMutation";
+import { LoginParams, postLogin } from "../api"; // Adjust the path as necessary
+import loginBg from "../assets/login-bg.jpg";
+import { useAppMutation } from "../hooks/useAppMutation";
 import { useTranslation } from "react-i18next";
 
-const Login = () => {
+const LoginPage = () => {
   const { t } = useTranslation();
 
   const validationSchema = Yup.object({
@@ -107,4 +107,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

@@ -2,12 +2,12 @@ import { Box, Button, TextField, Link, Paper, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { SignUpParams, postSignUp } from "../../api"; // Adjust the path as necessary
-import loginBg from "../../assets/login-bg.jpg";
-import { useAppMutation } from "../../hooks/useAppMutation";
+import { SignUpParams, postSignUp } from "../api"; // Adjust the path as necessary
+import loginBg from "../assets/login-bg.jpg";
+import { useAppMutation } from "../hooks/useAppMutation";
 import { useTranslation } from "react-i18next";
 
-const SignUp = () => {
+const SignUpPage = () => {
   const { t } = useTranslation();
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -154,4 +154,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpPage;

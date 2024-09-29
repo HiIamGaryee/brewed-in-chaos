@@ -1,8 +1,8 @@
 import React from "react";
-import ErrorBg from "../../assets/errorbg.jpeg";
+import ErrorBg from "../assets/errorbg.jpeg";
 import { Box } from "@mui/material";
 
-const Error = () => {
+const ErrorPage = () => {
   return (
     <Box
       sx={{
@@ -18,4 +18,4 @@ const Error = () => {
   );
 };
 
-export default Error;
+export default ErrorPage;
