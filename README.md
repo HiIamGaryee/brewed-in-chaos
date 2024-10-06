@@ -1,7 +1,8 @@
-# brewed-in-chaos 
+# brewed-in-chaos
 
 A coffee shop webpage which involved Web3 and AI by ---> Team COMPILE TIME CHAOS
 This project was created by React, Mui and cosmocloud (as backend).
+🔗 : https://brewed-in-chaos.vercel.app
 
 ## Available Scripts
 
