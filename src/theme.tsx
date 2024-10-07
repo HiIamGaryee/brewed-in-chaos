@@ -125,11 +125,27 @@ const getTheme = (mode: any) =>
         },
       },
       MuiButton: {
+        defaultProps: {
+          variant: "contained",
+        },
         styleOverrides: {
+          contained: {
+            background: "#e2994f",
+            color: "#F5F3EF",
+            fontWeight: "bold",
+            borderRadius: "20px",
+            "&:hover": {
+              background: "#e2994f",
+            },
+            "&:focus": {
+              background: "#e2994f",
+            },
+          },
           root: {
             background: "#e2994f",
             color: "#F5F3EF",
             borderRadius: "28px",
+            p: "20px",
             "&:hover": {
               background: "#c17d39",
             },

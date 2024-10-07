@@ -11,44 +11,44 @@ import Layout from "../Layout";
 
 const faqList = [
   {
-    code: "What is return policy?",
-    desc: "Our return policy allows returns within 30 days of purchase. Please ensure the product is in its original condition.",
+    code: "What is your return policy for coffee products?",
+    desc: "Our return policy allows returns within 30 days of purchase for unopened coffee products in their original condition.",
   },
   {
-    code: "How can I track my order?",
-    desc: "You can track your order using the tracking number provided in your order confirmation email.",
+    code: "How can I track my coffee order?",
+    desc: "You can track your coffee order using the tracking number provided in your order confirmation email.",
   },
   {
-    code: "Do we offer international shipping?",
-    desc: "Yes, we offer international shipping to many countries. Please see our shipping policy for more details.",
+    code: "Do you offer international shipping for coffee?",
+    desc: "Yes, we offer international shipping for our coffee products to numerous countries. Check our shipping policy for more details.",
   },
   {
-    code: "How do I make a payment?",
-    desc: "We accept various payment methods including credit/debit cards, PayPal, and bank transfers.",
+    code: "What payment methods do you accept for coffee?",
+    desc: "We accept various payment methods including credit/debit cards, PayPal, and bank transfers for coffee purchases.",
   },
   {
-    code: "Can I change or cancel my order?",
-    desc: "You can change or cancel your order within 24 hours of placing it. After that, the order processing begins, and changes may not be possible.",
+    code: "Can I change or cancel my coffee order?",
+    desc: "You can change or cancel your coffee order within 24 hours of placing it. After that, the order processing begins, and changes may not be possible.",
   },
   {
-    code: "What is your warranty policy?",
-    desc: "We offer a one-year warranty on all our products. The warranty covers manufacturing defects and excludes any damage caused by misuse.",
+    code: "What is your warranty policy on coffee equipment?",
+    desc: "We offer a one-year warranty on all our coffee equipment. The warranty covers manufacturing defects and excludes any damage caused by misuse.",
   },
   {
-    code: "How can I contact customer service?",
-    desc: "You can reach our customer service team via email at support@example.com or by calling (+081) 5678 1234.",
+    code: "How can I contact customer service for coffee inquiries?",
+    desc: "You can reach our customer service team via email at coffee_support@example.com or by calling (+081) 5678 1234.",
   },
   {
-    code: "Are there any discounts available?",
-    desc: "Yes, we offer seasonal discounts and promotions. Subscribe to our newsletter to stay updated on the latest offers.",
+    code: "Are there any discounts available on coffee products?",
+    desc: "Yes, we offer seasonal discounts and promotions on our coffee products. Subscribe to our newsletter to stay updated on the latest offers.",
   },
   {
-    code: "How do I subscribe to your newsletter?",
-    desc: "You can subscribe to our newsletter by entering your email address in the subscription box at the bottom of our website.",
+    code: "How do I subscribe to your newsletter for coffee updates?",
+    desc: "You can subscribe to our coffee updates by entering your email address in the subscription box at the bottom of our website.",
   },
   {
-    code: "What is your privacy policy?",
-    desc: "Our privacy policy outlines how we collect, use, and protect your personal information. Please read it carefully to understand our practices.",
+    code: "What is your privacy policy regarding customer data?",
+    desc: "Our privacy policy details how we collect, use, and protect your personal information. Please review it to understand our practices.",
   },
 ];
 
@@ -69,8 +69,14 @@ const FaqPage = () => {
           minHeight: "100vh",
         }}
       >
-        <Box sx={{ maxWidth: 800, margin: "auto", textAlign: "center" }}>
-          <Typography variant="h4" gutterBottom fontWeight="bold">
+        <Box
+          sx={{
+            maxWidth: 800,
+            margin: "auto",
+            textAlign: "center",
+          }}
+        >
+          <Typography variant="h4" fontWeight="bold" mb={2}>
             FAQ
           </Typography>
 
@@ -81,8 +87,8 @@ const FaqPage = () => {
               onChange={handleChange(`panel${index}`)}
               sx={{
                 backgroundColor: "secondary.main",
-                border: "1px solid #444",
-                marginBottom: 2,
+                mb: 2,
+                borderRadius: "20px",
               }}
             >
               <AccordionSummary
@@ -90,7 +96,10 @@ const FaqPage = () => {
                 aria-controls={`panel${index}bh-content`}
                 id={`panel${index}bh-header`}
               >
-                <Typography variant="h6" sx={{ flexShrink: 0 }}>
+                <Typography
+                  variant="h6"
+                  sx={{ flexShrink: 0, wordBreak: "break-word" }}
+                >
                   {faq.code}
                 </Typography>
               </AccordionSummary>

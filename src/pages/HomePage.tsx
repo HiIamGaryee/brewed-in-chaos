@@ -1,102 +1,130 @@
-import React, { useState, SetStateAction, useContext } from "react";
 import Layout from "../Layout";
-import {
-  Box,
-  Paper,
-  InputBase,
-  InputAdornment,
-  Typography,
-  Stack,
-} from "@mui/material";
-import SearchIcon from "../assets/icons/icon-search.svg";
-import MovieTrendList from "../components/movie-list/movieTrendList";
-import MovieList from "../components/movie-list";
-import { MovieDataType } from "../assets/data";
-import { MovieContext } from "../context/movie-context";
+import { Box, Typography, Button, Stack, Grid } from "@mui/material";
+import coffeeImg from "../assets/coffee1.png";
 
 const HomePage = () => {
-  const [search, setSearch] = useState("");
-  const [searchList, setSearchList] = useState<MovieDataType[]>([]);
-  const { state } = useContext(MovieContext);
-  const { movies } = state;
-  const trendingList = movies.filter((item) => item.isTrending === true);
-  const recommendList = movies.filter((item) => item.isTrending !== true);
-
-  const handleSearch = (e: { target: { value: SetStateAction<string> } }) => {
-    setSearch(e.target.value);
-    const newList = movies.filter((movie) =>
-      movie.title.toLowerCase().includes(search.toLowerCase())
-    );
-    setSearchList(newList);
-  };
   return (
     <Layout>
-      <Box py={2} px={4}>
-        {search === "" ? (
-          <Box width={1}>
-            <Stack spacing={4}>
-              <Box width={1}>
-                <Box
-                  sx={{
-                    gap: 2,
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    display: "flex",
-                  }}
-                >
-                  <Typography variant="h5" component="h1" fontWeight="bold">
-                    Recommended For You
-                  </Typography>
-                  <Paper
-                    component="form"
+      <Grid container p={4}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignitem: { xs: "center", md: "start" },
+            justifyContent: "center",
+            pl: { xs: 0, md: 8 },
+
+            order: { xs: 2, md: 1 },
+          }}
+        >
+          <Stack spacing={2}>
+            <Box>
+              <Stack spacing={4}>
+                <Box>
+                  <Box
                     sx={{
                       display: "flex",
-                      alignItems: "center",
-                      borderRadius: "default",
-                      p: 1,
-                      backgroundColor: "secondary.dark",
-                      border: "none",
-                      maxWidth: "150px",
-                      width: "100%",
+                      flexWrap: "wrap",
+                      justifyContent: { xs: "center", md: "start" },
                     }}
                   >
-                    <InputBase
-                      placeholder="Search"
-                      sx={{
-                        ml: 1,
-                        color: "white",
-                        border: "none",
-                        maxWidth: "100%",
-                      }}
-                      value={search}
-                      onChange={handleSearch}
-                      startAdornment={
-                        <InputAdornment position="start">
-                          <img
-                            src={SearchIcon}
-                            alt="search icon"
-                            width={20}
-                            height={20}
-                          />
-                        </InputAdornment>
-                      }
-                    />
-                  </Paper>
+                    <Typography variant="h3" fontWeight="bold">
+                      Discover Your
+                    </Typography>
+                    <Typography
+                      color="primary.main"
+                      variant="h3"
+                      fontWeight="bold"
+                    >
+                      Perfect Favorite Bean
+                    </Typography>
+                  </Box>
                 </Box>
-                <MovieList recommendList={recommendList} />
-              </Box>
-            </Stack>
-          </Box>
-        ) : (
-          <Box width={1}>
-            <Typography>
-              Found {searchList.length} results for "{search}"{""}
-            </Typography>
-            <MovieList recommendList={searchList} />
-          </Box>
-        )}
+                <Typography
+                  variant="h6"
+                  px={2}
+                  sx={{
+                    textAlign: { xs: "center", md: "start" },
+                    pl: { xs: 2, md: 0 },
+                    pr: { xs: 2, md: 12 },
+                  }}
+                >
+                  Your trust with us starts from knowing your coffee origin
+                </Typography>
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: 2,
+                    justifyContent: { xs: "center", md: "start" },
+                  }}
+                >
+                  <Button>Store</Button>
+                  <Button>Join Us</Button>
+                </Box>
+              </Stack>
+            </Box>
+          </Stack>
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{
+            display: "flex",
+            alignitem: "center",
+            justifyContent: "center",
+            order: { xs: 1, md: 2 },
+          }}
+        >
+          <Box
+            component="img"
+            src={coffeeImg}
+            alt="Bouncing GIF"
+            sx={{
+              cursor: "pointer",
+              mt: { xs: 8, md: 0 },
+              maxHeight: "500px",
+              // animation: "bounce 2s infinite",
+              // "@keyframes bounce": {
+              //   "0%, 100%": {
+              //     transform: "translateY(0)",
+              //   },
+              //   "50%": {
+              //     transform: "translateY(-20px)",
+              //   },
+              // },
+            }}
+          />
+        </Grid>
+      </Grid>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          justifyItems: "center",
+          flexDirection: "column",
+          p: 4,
+        }}
+      >
+        <Typography variant="h3" fontWeight="bold">
+          Our Selling Point
+        </Typography>
+        <Typography variant="h6" px={2}>
+          Our cyrpto payments and tokenized rewards cater to tech-savvy
+          customers, enhacing user engagement and loyalty.
+        </Typography>
       </Box>
+      <Grid container>
+        <Grid item xs={12} md={4}></Grid>
+        <Grid item xs={12} md={4}></Grid>
+        <Grid item xs={12} md={4}></Grid>
+      </Grid>
     </Layout>
   );
 };
