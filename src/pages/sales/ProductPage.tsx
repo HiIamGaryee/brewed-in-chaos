@@ -1,70 +1,89 @@
-import { Box, Typography, Grid, Card, CardContent } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  IconButton,
+} from "@mui/material";
 import React from "react";
 import Layout from "../../Layout";
 import Png from "../../assets/brewed-in-chaos/123.png";
 import { useNavigate } from "react-router-dom";
-
+import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 // import { getAboutUs } from "../api";
 // import { useQuery } from "@tanstack/react-query";
 
 const bestSellerList = [
   {
     img: Png,
+    price: "Rm99.99",
     name: "Sumatra Mandheling",
     code: "SM",
   },
   {
     img: Png,
+    price: "Rm99.99",
     name: "Colombian Supremo",
     code: "CS",
   },
   {
     img: Png,
+    price: "Rm99.99",
     name: "Jamaican Blue Mountain",
     code: "JBM",
   },
   {
     img: Png,
+    price: "Rm99.99",
     name: "Kenyan AA",
     code: "KAA",
   },
   {
     img: Png,
+    price: "Rm99.99",
     name: "Sumatra Mandheling",
     code: "SM",
   },
   {
     img: Png,
+    price: "Rm99.99",
     name: "Colombian Supremo",
     code: "CS",
   },
   {
     img: Png,
+    price: "Rm99.99",
     name: "Jamaican Blue Mountain",
     code: "JBM",
   },
   {
     img: Png,
+    price: "Rm99.99",
     name: "Kenyan AA",
     code: "KAA",
   },
   {
     img: Png,
+    price: "Rm99.99",
     name: "Sumatra Mandheling",
     code: "SM",
   },
   {
     img: Png,
+    price: "Rm99.99",
     name: "Colombian Supremo",
     code: "CS",
   },
   {
     img: Png,
+    price: "Rm99.99",
     name: "Jamaican Blue Mountain",
     code: "JBM",
   },
   {
     img: Png,
+    price: "Rm99.99",
     name: "Kenyan AA",
     code: "KAA",
   },
@@ -95,13 +114,10 @@ const ProductPage = () => {
         <Box sx={{ maxWidth: 1200, margin: "auto", textAlign: "center" }}>
           {/* Original About Us Content */}
           <Typography variant="h4" gutterBottom fontWeight="bold">
-            About Us Page
+            Buy Now
           </Typography>
           <Typography variant="body1" sx={{ marginBottom: 4 }}>
-            Our mission is to lead the industry in creating value for ourselves
-            and our partners by revolutionizing the way people experience
-            products. Our team is dedicated to pushing the boundaries of what's
-            possible, striving to set standards rather than follow them.
+            Buy a new coffee bean and try it Now. No Coffee No Life.
           </Typography>
           <Grid container spacing={4}>
             {bestSellerList.map((item, index) => (
@@ -113,7 +129,7 @@ const ProductPage = () => {
                 key={item.code}
                 onClick={() => navigate(`/product/${item.code}`)}
               >
-                <Card sx={{ mb: 2 }}>
+                <Card sx={{ mb: 2, py: 0, px: 2 }}>
                   <CardContent>
                     <Box
                       component="img"
@@ -129,10 +145,32 @@ const ProductPage = () => {
                       }}
                     />
                   </CardContent>
+                  <Typography
+                    variant="body1"
+                    textAlign="center"
+                    fontWeight="bold"
+                  >
+                    {item.name}
+                  </Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Typography
+                      variant="body1"
+                      color="primary.main"
+                      fontWeight="bold"
+                    >
+                      {item.price}
+                    </Typography>
+                    <IconButton>
+                      <ShoppingCartRoundedIcon />
+                    </IconButton>
+                  </Box>
                 </Card>
-                <Typography variant="body1" textAlign="center" sx={{ mb: 2 }}>
-                  {item.name}
-                </Typography>
               </Grid>
             ))}
           </Grid>

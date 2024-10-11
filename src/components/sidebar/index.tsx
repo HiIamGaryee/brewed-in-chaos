@@ -8,7 +8,9 @@ import LiveTvRoundedIcon from "@mui/icons-material/LiveTvRounded";
 import CottageRoundedIcon from "@mui/icons-material/CottageRounded";
 // import PublicRoundedIcon from "@mui/icons-material/PublicRounded";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-
+import StoreRoundedIcon from "@mui/icons-material/StoreRounded";
+import ShoppingCartCheckoutRoundedIcon from "@mui/icons-material/ShoppingCartCheckoutRounded";
+import CoffeeRoundedIcon from "@mui/icons-material/CoffeeRounded";
 const navLinks = [
   {
     name: "Home",
@@ -16,20 +18,21 @@ const navLinks = [
     link: "/",
   },
   {
-    name: "Movies",
-    icon: <LocalMoviesRoundedIcon />,
-    link: "/movies",
+    name: "About Us",
+    icon: <CoffeeRoundedIcon />,
+    link: "/about-us",
   },
   {
-    name: "TV Series",
-    icon: <LiveTvRoundedIcon />,
-    link: "/tv-series",
+    name: "Mall",
+    icon: <StoreRoundedIcon />,
+    link: "/product",
   },
   {
-    name: "Bookmarks",
-    icon: <BookmarksRoundedIcon />,
-    link: "/bookmarks",
+    name: "Cart",
+    icon: <ShoppingCartCheckoutRoundedIcon />,
+    link: "/cart",
   },
+
   {
     name: "Profile",
     icon: <AccountCircleRoundedIcon />,

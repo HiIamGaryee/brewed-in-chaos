@@ -224,6 +224,7 @@ const HomePage = () => {
               sm={6}
               md={3}
               key={item.code}
+              sx={{ mb: 4 }}
               onClick={() => navigate(`/product/${item.code}`)}
             >
               <Card sx={{ mb: 2 }}>
@@ -242,10 +243,14 @@ const HomePage = () => {
                     }}
                   />
                 </CardContent>
+                <Typography
+                  variant="body1"
+                  textAlign="center"
+                  fontWeight="bold"
+                >
+                  {item.name}
+                </Typography>
               </Card>
-              <Typography variant="body1" textAlign="center" sx={{ mb: 2 }}>
-                {item.name}
-              </Typography>
             </Grid>
           ))}
         </Grid>

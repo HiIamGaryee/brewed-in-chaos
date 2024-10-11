@@ -7,6 +7,7 @@ import {
   Card,
   CardMedia,
   IconButton,
+  Stack,
 } from "@mui/material";
 import Layout from "../../Layout";
 import { useParams } from "react-router-dom";
@@ -23,6 +24,9 @@ const ProductDetailPage = () => {
     name: "Coffee Grinder",
     image: Png,
     price: 289.0,
+    acidity: "low",
+    roast: "dark",
+    processing: "washed",
     description:
       "A coffee bean is a seed from the Coffea plant and the source for coffee. It is the pit inside the red or purple fruit. This fruit is often referred to as a coffee cherry, and like the cherry, it is a fruit with a pit.",
   };
@@ -33,7 +37,7 @@ const ProductDetailPage = () => {
 
   return (
     <Layout>
-      <Grid container spacing={4} sx={{ padding: 4 }}>
+      <Grid container spacing={4} sx={{ p: 4 }}>
         <Grid item xs={12} md={5}>
           <Card>
             <CardMedia
@@ -51,44 +55,52 @@ const ProductDetailPage = () => {
               justifyContent: "space-between",
             }}
           >
-            <Typography variant="h4">{product.name}</Typography>
-            <Typography variant="h5" color="primary">
-              ${product.price}
-            </Typography>
+            <Stack spacing={3}>
+              <Box>
+                <Typography variant="h4">{product.name}</Typography>
+                <Typography variant="h5" color="primary">
+                  ${product.price}
+                </Typography>{" "}
+              </Box>
 
-            <Typography variant="body1" sx={{ maxWidth: 500 }}>
-              {product.description}
-            </Typography>
+              <Typography variant="body1" sx={{ maxWidth: 500 }}>
+                {product.description}
+              </Typography>
+              <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <Typography variant="caption">
+                  Acidity Level: {product.acidity}
+                </Typography>
 
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <IconButton onClick={handleDecrease}>
-                <RemoveRoundedIcon />
-              </IconButton>
-              <Typography sx={{ mx: 2 }}>{quantity}</Typography>
-              <IconButton onClick={handleIncrease}>
-                <AddRoundedIcon />
-              </IconButton>
-            </Box>
+                <Typography variant="caption">
+                  Roast Level: {product.roast}
+                </Typography>
 
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <IconButton onClick={handleDecrease}>
-                <RemoveRoundedIcon />
-              </IconButton>
-              <Typography sx={{ mx: 2 }}>{quantity}</Typography>
-              <IconButton onClick={handleIncrease}>
-                <AddRoundedIcon />
-              </IconButton>
-            </Box>
+                <Typography variant="caption">
+                  Processing Method: {product.processing}
+                </Typography>
+              </Box>
+              <Box>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <IconButton onClick={handleDecrease}>
+                    <RemoveRoundedIcon />
+                  </IconButton>
+                  <Typography sx={{ mx: 2 }}>{quantity}</Typography>
+                  <IconButton onClick={handleIncrease}>
+                    <AddRoundedIcon />
+                  </IconButton>
+                </Box>
 
-            <Box>
-              <Button
-                variant="contained"
-                color="primary"
-                // onClick={() => navigate(`/purchase/${product.id}`)}
-              >
-                Add to Cart
-              </Button>
-            </Box>
+                <Box>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    // onClick={() => navigate(`/purchase/${product.id}`)}
+                  >
+                    Add to Cart
+                  </Button>
+                </Box>
+              </Box>
+            </Stack>
           </Box>
         </Grid>
       </Grid>

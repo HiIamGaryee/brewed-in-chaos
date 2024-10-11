@@ -10,6 +10,9 @@ import CottageRoundedIcon from "@mui/icons-material/CottageRounded";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import { useAuth } from "../../AuthProvider";
 import { useTranslation } from "react-i18next";
+import StoreRoundedIcon from "@mui/icons-material/StoreRounded";
+import ShoppingCartCheckoutRoundedIcon from "@mui/icons-material/ShoppingCartCheckoutRounded";
+import CoffeeRoundedIcon from "@mui/icons-material/CoffeeRounded";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -28,19 +31,19 @@ const Navbar = () => {
       link: "/",
     },
     {
-      name: "Movies",
-      icon: <LocalMoviesRoundedIcon />,
-      link: "/movies",
+      name: "About Us",
+      icon: <CoffeeRoundedIcon />,
+      link: "/about-us",
     },
     {
-      name: "TV Series",
-      icon: <LiveTvRoundedIcon />,
-      link: "/tv-series",
+      name: "Mall",
+      icon: <StoreRoundedIcon />,
+      link: "/product",
     },
     {
-      name: "Bookmarks",
-      icon: <BookmarksRoundedIcon />,
-      link: "/bookmarks",
+      name: "Cart",
+      icon: <ShoppingCartCheckoutRoundedIcon />,
+      link: "/cart",
     },
     {
       name: "Profile",
