@@ -87,13 +87,10 @@ const AboutUsPage = () => {
         <Box sx={{ maxWidth: 1200, margin: "auto", textAlign: "center" }}>
           {/* Original About Us Content */}
           <Typography variant="h4" gutterBottom fontWeight="bold">
-            About Us Page
+            Welcome to Chaos!
           </Typography>
           <Typography variant="body1" sx={{ marginBottom: 4 }}>
-            Our mission is to lead the industry in creating value for ourselves
-            and our partners by revolutionizing the way people experience
-            products. Our team is dedicated to pushing the boundaries of what's
-            possible, striving to set standards rather than follow them.
+            Welcome to Brewed in Chaos, where coffee lovers deserve a 1 stop shop, not a maze of platforms. We are passionate about delivering the finest coffee experience to our customers by offering premium-quality beans, barista supplies, and educational resources to enhance your coffee journey. Whether you’re a seasoned barista or a coffee enthusiast, our carefully curated collection is designed to meet your every need.
           </Typography>
           <Grid container spacing={4}>
             <Grid item xs={12} md={6}>
