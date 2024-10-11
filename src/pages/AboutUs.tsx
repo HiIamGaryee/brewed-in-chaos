@@ -23,43 +23,43 @@ import { getAboutUs } from "../api";
 import { useQuery } from "@tanstack/react-query";
 
 const contactList = [
-  { icon: <Phone color="primary" />, text: "(+081) 5678 1234", label: "Phone" },
-  { icon: <Email color="primary" />, text: "mail@example.com", label: "Email" },
+  { icon: <Phone color="primary" />, text: "(+60) 123456789", label: "Phone" },
+  { icon: <Email color="primary" />, text: "hello@brewedinchaos.com", label: "Email" },
   {
     icon: <LocationOn color="primary" />,
-    text: "London Eye, London",
+    text: "Kuala Lumpur, Malaysia",
     label: "Address",
   },
   {
     icon: <Instagram color="primary" />,
-    text: "@username",
+    text: "@BrewedInChaos",
     label: "Instagram",
   },
 ];
 
 const services = [
   {
-    title: "Marketing",
+    title: "Solution",
     description:
-      "Craft relevant content with ads across all platforms to increase your online visibility.",
+      "We provide a seamless all-in-one platform for beans, supplies, equipmentm and education. ",
     icon: <MarketingIcon color="primary" />,
   },
   {
-    title: "Solution",
+    title: "Transparency",
     description:
-      "Cut through business clutter with clear and precise strategies tailored to your needs.",
+      "Using blockchain, we offer transparent product traceability, ensuring users know the origin of each product.",
     icon: <BusinessIcon color="primary" />,
   },
   {
     title: "Creative",
     description:
-      "Develop beautiful layouts that make your project stand out from the competition.",
+      "Our interactive learning hub features books and courses that empower coffee enthusiast at all levels.",
     icon: <CreativeIcon color="primary" />,
   },
   {
-    title: "Development",
+    title: "Subcriptions",
     description:
-      "Create robust platforms that facilitate easier client interactions and functionality.",
+      "Exclusive loyalty program which offers tailored VIP rewards.",
     icon: <WebIcon color="primary" />,
   },
 ];
@@ -87,7 +87,7 @@ const AboutUsPage = () => {
         <Box sx={{ maxWidth: 1200, margin: "auto", textAlign: "center" }}>
           {/* Original About Us Content */}
           <Typography variant="h4" gutterBottom fontWeight="bold">
-            Welcome to Chaos!
+            Welcome to Brewed in Chaos!
           </Typography>
           <Typography variant="body1" sx={{ marginBottom: 4 }}>
             Welcome to Brewed in Chaos, where coffee lovers deserve a 1 stop shop, not a maze of platforms. We are passionate about delivering the finest coffee experience to our customers by offering premium-quality beans, barista supplies, and educational resources to enhance your coffee journey. Whether you’re a seasoned barista or a coffee enthusiast, our carefully curated collection is designed to meet your every need.
@@ -104,9 +104,7 @@ const AboutUsPage = () => {
                   Our Products
                 </Typography>
                 <Typography align="center">
-                  We offer a range of high-quality products that integrate
-                  seamlessly with your daily life, enhancing your efficiency and
-                  enjoyment.
+                We offer a curated selection of premium coffee beans, both classic and flavored, sourced from sustainable farms. Our collection includes everything from bold espressos to smooth blends, perfect for any coffee lover.
                 </Typography>
               </Card>
             </Grid>
@@ -121,9 +119,7 @@ const AboutUsPage = () => {
                   Our Vision
                 </Typography>
                 <Typography align="center">
-                  To be recognized as the most innovative company in our
-                  industry, providing solutions that improve the quality of life
-                  worldwide.
+                We aim to create a global community of coffee enthusiasts by delivering exceptional coffee experiences, blending quality and innovation while supporting ethical and sustainable practices.
                 </Typography>
               </Card>
             </Grid>
@@ -137,11 +133,11 @@ const AboutUsPage = () => {
               component="div"
               textAlign="center"
             >
-              Service We Provide
+              Our Solution: Innovating Coffee, One Cup At A Time.
             </Typography>
             <Grid container spacing={4} justifyContent="center">
               {services.map((service, index) => (
-                <Grid item key={index} xs={12} sm={6} md={3}>
+                <Grid item key={index} xs={12} sm={8} md={3}>
                   <Card
                     sx={{
                       display: "flex",
@@ -191,7 +187,7 @@ const AboutUsPage = () => {
             >
               <Box>
                 <Typography variant="h4" align="left" fontWeight="bold">
-                  Get In Touch
+                  Get in touch with us!
                 </Typography>
                 <Typography align="left" color="secondary.main">
                   Get In Touch Desc
