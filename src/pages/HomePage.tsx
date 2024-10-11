@@ -14,6 +14,7 @@ import usq1Img from "../assets/brewed-in-chaos/usq-1.jpeg";
 import usq2Img from "../assets/brewed-in-chaos/usq-2.jpeg";
 import usq3Img from "../assets/brewed-in-chaos/usq-3.jpeg";
 import Png from "../assets/brewed-in-chaos/123.png";
+import { useNavigate } from "react-router-dom";
 
 const bestSellerList = [
   {
@@ -54,6 +55,8 @@ const USPList = [
 ];
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   return (
     <Layout>
       <Grid container p={4}>
@@ -215,7 +218,14 @@ const HomePage = () => {
 
         <Grid container spacing={4}>
           {bestSellerList.map((item, index) => (
-            <Grid item xs={12} sm={6} md={3} key={item.code}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={3}
+              key={item.code}
+              onClick={() => navigate(`/product/${item.code}`)}
+            >
               <Card sx={{ mb: 2 }}>
                 <CardContent>
                   <Box

@@ -17,6 +17,10 @@ import LoginPage from "./pages/LoginPage";
 import ServicesPage from "./pages/ServicesPage";
 import ErrorPage from "./pages/ErrorPage";
 import BookmarkPage from "./pages/BookmarkPage";
+import ProductPage from "./pages/sales/ProductPage";
+import CartPage from "./pages/sales/CartPage";
+import CheckoutPage from "./pages/sales/CheckoutPage";
+import ProductDetailPage from "./pages/sales/ProductDetailPage";
 
 // Layout component that specifies the default error element
 const Layout = () => {
@@ -45,6 +49,10 @@ export const router = createBrowserRouter([
       { path: "/package", element: <PackagePage /> },
       { path: "/services", element: <ServicesPage /> },
       { path: "/upcoming-movies", element: <UpcomingPage /> },
+      { path: "/product", element: <ProductPage /> },
+      { path: "product/:productCode", element: <ProductDetailPage /> },
+      { path: "/cart", element: <CartPage /> },
+      { path: "/checkout", element: <CheckoutPage /> },
       { path: "/wizardz", element: <WizardzPage /> },
       {
         path: "/member/profile",
