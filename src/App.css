@@ -32,6 +32,16 @@ body {
   overflow: hidden;
 }
 
+
+.cs-message-input__tools:first-child .cs-button:last-child
+{
+  display: none;
+}
+.cs-message-input__content-editor-wrapper
+{
+  margin-left: 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

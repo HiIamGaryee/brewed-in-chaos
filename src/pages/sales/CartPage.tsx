@@ -20,8 +20,7 @@ import Layout from "../../Layout";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
-import { useNavigate } from "react-router-dom";
-// Dummy product data
+
 const products = [
   { id: "1", name: "Analog Magazine Rack", price: 120, quantity: 2 },
   { id: "2", name: "Closca Helmet", price: 132, quantity: 1 },
@@ -34,7 +33,6 @@ const CartPage = () => {
     // Implement quantity change logic here
     console.log(`Updated Product ID ${id} to Quantity ${newQuantity}`);
   };
-  const navigate = useNavigate();
 
   // Function to remove item from cart
   const handleRemoveItem = (id: string) => {
