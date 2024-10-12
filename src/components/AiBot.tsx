@@ -8,13 +8,19 @@ import {
   MessageInput,
   TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
-import { Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
+import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
 
 interface IMessage {
   message: string;
   sender: string;
   direction?: "incoming" | "outgoing";
 }
+
+interface AiBotProps {
+  onClose: () => void;
+}
+
 const AiBotUrl = process.env.REACT_APP_AIBOT_API_KEY;
 
 const systemMessage = {
@@ -23,7 +29,7 @@ const systemMessage = {
     "Explain things like you're talking to a warm and flirty barista with 5 years of experience and reply me with short and less point formet.",
 };
 
-const AiBot = () => {
+const AiBot = ({ onClose }: AiBotProps) => {
   const [messages, setMessages] = useState<IMessage[]>([
     {
       message: "Hello, I'm your Baristas! Ask me anything about Coffee !",
@@ -81,31 +87,39 @@ const AiBot = () => {
   }
 
   return (
-    <Box sx={{ position: "relative", height: "450px", width: "500px" }}>
-      <MainContainer>
-        <ChatContainer>
-          <MessageList
-            scrollBehavior="smooth"
-            typingIndicator={
-              isTyping ? (
-                <TypingIndicator content="Your Baristas, is typing..." />
-              ) : null
-            }
-          >
-            {messages.map((message, index) => (
-              <ChatMessage
-                key={index}
-                model={{
-                  message: message.message,
-                  direction: message.direction ?? "incoming",
-                  position: "single",
-                }}
-              />
-            ))}
-          </MessageList>
-          <MessageInput placeholder="Type message here" onSend={handleSend} />
-        </ChatContainer>
-      </MainContainer>
+    <Box sx={{ pr: 2, position: "relative" }}>
+      <IconButton
+        onClick={onClose}
+        style={{ position: "absolute", right: 0, top: 0 }}
+      >
+        <HighlightOffRoundedIcon />
+      </IconButton>
+      <Box sx={{ position: "relative", height: "450px", width: "500px" }}>
+        <MainContainer>
+          <ChatContainer>
+            <MessageList
+              scrollBehavior="smooth"
+              typingIndicator={
+                isTyping ? (
+                  <TypingIndicator content="Your Baristas, is typing..." />
+                ) : null
+              }
+            >
+              {messages.map((message, index) => (
+                <ChatMessage
+                  key={index}
+                  model={{
+                    message: message.message,
+                    direction: message.direction ?? "incoming",
+                    position: "single",
+                  }}
+                />
+              ))}
+            </MessageList>
+            <MessageInput placeholder="Type message here" onSend={handleSend} />
+          </ChatContainer>
+        </MainContainer>
+      </Box>
     </Box>
   );
 };
