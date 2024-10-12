@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom";
 import { Box, Typography, TextField, Button } from "@mui/material";
+import {
+  EmailSubscribeParams,
+  postEmailSubscribe,
+} from "../../api/postEmailSubscribe";
+import { useAppMutation } from "../../hooks/useAppMutation";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
 
 const footerLinks = [
   {
@@ -23,6 +31,26 @@ const footerLinks = [
 ];
 
 const Footer = () => {
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .required("Email is required")
+      .email("Invalid email address"),
+  });
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<EmailSubscribeParams>({
+    resolver: yupResolver(validationSchema),
+  });
+
+  const { mutate } = useAppMutation(postEmailSubscribe);
+
+  const onSubmit = (data: EmailSubscribeParams) => {
+    mutate(data);
+  };
+
   return (
     // <Box>OI</Box>
     <Box
@@ -75,25 +103,29 @@ const Footer = () => {
         <Typography variant="h6" sx={{ mb: 2, color: "white" }}>
           SUBSCRIBE
         </Typography>
-        <Box sx={{ display: "flex", mb: 2 }}>
-          <TextField
-            variant="outlined"
-            size="small"
-            placeholder="Enter email address"
-            sx={{
-              backgroundColor: "white",
-              borderRadius: 1,
-              flex: 1,
-              marginRight: 1,
-            }}
-          />
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: "#ff5722", color: "white" }}
-          >
-            SEND
-          </Button>
-        </Box>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Box sx={{ display: "flex", mb: 2 }}>
+            <TextField
+              variant="outlined"
+              {...register("email")}
+              size="small"
+              placeholder="Enter email address"
+              sx={{
+                backgroundColor: "white",
+                borderRadius: 1,
+                flex: 1,
+                marginRight: 1,
+              }}
+            />
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{ backgroundColor: "#ff5722", color: "white" }}
+            >
+              SEND
+            </Button>
+          </Box>
+        </form>
         <Box sx={{ display: "flex", gap: 1 }}>
           <Link to="#" style={{ textDecoration: "none", color: "white" }}>
             <Typography variant="body2">Facebook</Typography>

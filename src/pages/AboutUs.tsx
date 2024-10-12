@@ -19,12 +19,16 @@ import MarketingIcon from "@mui/icons-material/LocalOffer";
 import BusinessIcon from "@mui/icons-material/BusinessCenter";
 import CreativeIcon from "@mui/icons-material/Brush";
 import WebIcon from "@mui/icons-material/Web";
-import { getAboutUs } from "../api";
 import { useQuery } from "@tanstack/react-query";
+import { getAboutUs } from "../api";
 
 const contactList = [
   { icon: <Phone color="primary" />, text: "(+60) 123456789", label: "Phone" },
-  { icon: <Email color="primary" />, text: "hello@brewedinchaos.com", label: "Email" },
+  {
+    icon: <Email color="primary" />,
+    text: "hello@brewedinchaos.com",
+    label: "Email",
+  },
   {
     icon: <LocationOn color="primary" />,
     text: "Kuala Lumpur, Malaysia",
@@ -58,13 +62,17 @@ const services = [
   },
   {
     title: "Subcriptions",
-    description:
-      "Exclusive loyalty program which offers tailored VIP rewards.",
+    description: "Exclusive loyalty program which offers tailored VIP rewards.",
     icon: <WebIcon color="primary" />,
   },
 ];
 
 const AboutUsPage = () => {
+  // const { data: EmailSubscribeList } = useQuery({
+  //   queryKey: ["getEmailSubscribe", 10, 0], // Includes parameters in the query key
+  //   queryFn: () => getEmailSubscribe(10, 0), // Calls the function with parameters
+  // });
+
   const { data: aboutData } = useQuery({
     queryKey: ["aboutUs"],
     queryFn: getAboutUs,
@@ -90,7 +98,13 @@ const AboutUsPage = () => {
             Welcome to Brewed in Chaos!
           </Typography>
           <Typography variant="body1" sx={{ marginBottom: 4 }}>
-            Welcome to Brewed in Chaos, where coffee lovers deserve a 1 stop shop, not a maze of platforms. We are passionate about delivering the finest coffee experience to our customers by offering premium-quality beans, barista supplies, and educational resources to enhance your coffee journey. Whether you’re a seasoned barista or a coffee enthusiast, our carefully curated collection is designed to meet your every need.
+            Welcome to Brewed in Chaos, where coffee lovers deserve a 1 stop
+            shop, not a maze of platforms. We are passionate about delivering
+            the finest coffee experience to our customers by offering
+            premium-quality beans, barista supplies, and educational resources
+            to enhance your coffee journey. Whether you’re a seasoned barista or
+            a coffee enthusiast, our carefully curated collection is designed to
+            meet your every need.
           </Typography>
           <Grid container spacing={4}>
             <Grid item xs={12} md={6}>
@@ -104,7 +118,10 @@ const AboutUsPage = () => {
                   Our Products
                 </Typography>
                 <Typography align="center">
-                We offer a curated selection of premium coffee beans, both classic and flavored, sourced from sustainable farms. Our collection includes everything from bold espressos to smooth blends, perfect for any coffee lover.
+                  We offer a curated selection of premium coffee beans, both
+                  classic and flavored, sourced from sustainable farms. Our
+                  collection includes everything from bold espressos to smooth
+                  blends, perfect for any coffee lover.
                 </Typography>
               </Card>
             </Grid>
@@ -119,7 +136,10 @@ const AboutUsPage = () => {
                   Our Vision
                 </Typography>
                 <Typography align="center">
-                We aim to create a global community of coffee enthusiasts by delivering exceptional coffee experiences, blending quality and innovation while supporting ethical and sustainable practices.
+                  We aim to create a global community of coffee enthusiasts by
+                  delivering exceptional coffee experiences, blending quality
+                  and innovation while supporting ethical and sustainable
+                  practices.
                 </Typography>
               </Card>
             </Grid>
