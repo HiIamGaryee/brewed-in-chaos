@@ -10,26 +10,16 @@ import {
   Stack,
 } from "@mui/material";
 import Layout from "../../Layout";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Png from "../../assets/brewed-in-chaos/123.png";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 const ProductDetailPage = () => {
+  const location = useLocation();
+  const product = location.state.product;
   const { productCode } = useParams();
 
-  // Product data and quantity state
   const [quantity, setQuantity] = useState(1);
-  const product = {
-    id: productCode,
-    name: "Coffee Grinder",
-    image: Png,
-    price: 289.0,
-    acidity: "low",
-    roast: "dark",
-    processing: "washed",
-    description:
-      "A coffee bean is a seed from the Coffea plant and the source for coffee. It is the pit inside the red or purple fruit. This fruit is often referred to as a coffee cherry, and like the cherry, it is a fruit with a pit.",
-  };
 
   // Functions to handle quantity changes
   const handleIncrease = () => setQuantity(quantity + 1);
@@ -42,7 +32,13 @@ const ProductDetailPage = () => {
           <Card>
             <CardMedia
               component="img"
-              image={product.image}
+              image={(() => {
+                try {
+                  return require(`../../assets/brewed-in-chaos/package-face/${product.code}.png`);
+                } catch (error) {
+                  return require(`../../assets/brewed-in-chaos/package-face/default.png`);
+                }
+              })()}
               alt={product.name}
             />
           </Card>
@@ -60,7 +56,7 @@ const ProductDetailPage = () => {
                 <Typography variant="h4">{product.name}</Typography>
                 <Typography variant="h5" color="primary">
                   ${product.price}
-                </Typography>{" "}
+                </Typography>
               </Box>
 
               <Typography variant="body1" sx={{ maxWidth: 500 }}>
@@ -68,15 +64,17 @@ const ProductDetailPage = () => {
               </Typography>
               <Box sx={{ display: "flex", flexDirection: "column" }}>
                 <Typography variant="caption">
-                  Acidity Level: {product.acidity}
+                  {product.acidity ? `Acidity Level: ${product.acidity}` : null}
                 </Typography>
 
                 <Typography variant="caption">
-                  Roast Level: {product.roast}
+                  {product.roast ? `Roast Level: ${product.roast}` : null}
                 </Typography>
 
                 <Typography variant="caption">
-                  Processing Method: {product.processing}
+                  {product.processing
+                    ? `Processing Method: ${product.processing}`
+                    : null}
                 </Typography>
               </Box>
               <Box>

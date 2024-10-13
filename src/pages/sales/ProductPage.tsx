@@ -133,7 +133,13 @@ const ProductPage = () => {
                 sm={6}
                 md={3}
                 key={item.code}
-                onClick={() => navigate(`/product/${item.code}`)}
+                onClick={() =>
+                  navigate(`/product/${item.code}`, {
+                    state: {
+                      product: item,
+                    },
+                  })
+                }
               >
                 <Card sx={{ mb: 2, py: 0, px: 2 }}>
                   <CardContent>
