@@ -23,6 +23,9 @@ import CheckoutPage from "./pages/sales/CheckoutPage";
 import ProductDetailPage from "./pages/sales/ProductDetailPage";
 import AddListingPage from "./pages/admin/AddListing";
 import ProductListPage from "./pages/admin/ProductListPage";
+import SubscribleListPage from "./pages/admin/SubscribleListPage";
+import ContactUsListPage from "./pages/admin/ContactUsListPage";
+import SalesList from "./pages/admin/SalesList";
 
 // Layout component that specifies the default error element
 const Layout = () => {
@@ -57,6 +60,9 @@ export const router = createBrowserRouter([
       { path: "/checkout", element: <CheckoutPage /> },
       { path: "/admin/add-listing", element: <AddListingPage /> },
       { path: "/admin/product-list", element: <ProductListPage /> },
+      { path: "/admin/subscrible-list", element: <SubscribleListPage /> },
+      { path: "/admin/sales-list", element: <SalesList /> },
+      { path: "/admin/contact-us-list", element: <ContactUsListPage /> },
       { path: "/wizardz", element: <WizardzPage /> },
       {
         path: "/member/profile",

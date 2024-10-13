@@ -30,7 +30,14 @@ const Layout = ({ children }: LayoutProps) => {
       }}
     >
       <Navbar />
-      <Box sx={{ width: "100%", flexGrow: 1, overflowY: "auto" }}>
+      <Box
+        sx={{
+          width: "100%",
+          flexGrow: 1,
+          overflowY: "auto",
+          minHeight: "100vh",
+        }}
+      >
         {children}
         <Footer />
       </Box>

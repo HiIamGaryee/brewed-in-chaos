@@ -14,6 +14,7 @@ import {
   Grid,
   Stack,
   Paper,
+  IconButton,
 } from "@mui/material";
 import Layout from "../../Layout";
 import { useForm } from "react-hook-form";
@@ -26,6 +27,10 @@ import {
 } from "../../api/admin";
 import { useAppMutation } from "../../hooks/useAppMutation";
 import { useQuery } from "@tanstack/react-query";
+import MarkEmailReadRoundedIcon from "@mui/icons-material/MarkEmailReadRounded";
+import AddIcCallRoundedIcon from "@mui/icons-material/AddIcCallRounded";
+import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
+import { useNavigate } from "react-router-dom";
 
 const ProductListPage = () => {
   const validationSchema = Yup.object({
@@ -67,6 +72,8 @@ const ProductListPage = () => {
     mutate(data);
   };
 
+  const navigate = useNavigate();
+
   return (
     <Layout>
       <Box sx={{ p: 4 }}>
@@ -74,12 +81,23 @@ const ProductListPage = () => {
           sx={{
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "end",
+            alignItems: "start",
           }}
         >
           <Typography variant="h4" sx={{ mb: 2 }}>
             Admin Product List
           </Typography>
+          <Box gap={2}>
+            <IconButton onClick={() => navigate(`/admin/subscrible-list`)}>
+              <MarkEmailReadRoundedIcon />
+            </IconButton>
+            <IconButton onClick={() => navigate(`/admin/contact-us-list`)}>
+              <AddIcCallRoundedIcon />
+            </IconButton>
+            <IconButton onClick={() => navigate(`/admin/sales-list`)}>
+              <MonetizationOnRoundedIcon />
+            </IconButton>
+          </Box>
         </Box>
         <Grid container>
           <Grid item xs={12} md={8}>

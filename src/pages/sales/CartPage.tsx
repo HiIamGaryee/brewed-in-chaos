@@ -172,7 +172,15 @@ const CartPage = () => {
                   <Typography variant="h6">Order Summary</Typography>
                   <Typography>Subtotal: ${subtotal}</Typography>
                   <Typography>Shipping: Free</Typography>
-                  <Typography>Total: ${subtotal}</Typography>{" "}
+                  <Typography>Total: ${subtotal}</Typography>
+                </Box>
+                <Box>
+                  <Typography variant="h6">Delivery Address</Typography>
+                  <Typography>xxxx,xxxxxxxx,xxxxxx, xxxx</Typography>
+                </Box>
+                <Box>
+                  <Typography variant="h6">Mobile No</Typography>
+                  <Typography>012-321231</Typography>
                 </Box>
                 <Button variant="contained" color="primary" sx={{ mt: 2 }}>
                   Checkout

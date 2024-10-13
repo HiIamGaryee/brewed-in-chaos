@@ -144,6 +144,7 @@ const getTheme = (mode: any) =>
           text: {
             background: "#F5F3EF",
             color: "#e2994f",
+            border: "1px solid error.main",
             borderRadius: "4px",
             "&:hover": {
               background: "#F5F3EF",
