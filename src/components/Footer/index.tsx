@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Box, Typography, TextField, Button } from "@mui/material";
+import { Box, Typography, TextField, Paper, Button } from "@mui/material";
 import {
   EmailSubscribeParams,
   postEmailSubscribe,
@@ -8,6 +8,7 @@ import { useAppMutation } from "../../hooks/useAppMutation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { useState } from "react";
 
 const footerLinks = [
   {
@@ -45,7 +46,16 @@ const Footer = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const { mutate } = useAppMutation(postEmailSubscribe);
+  // const { mutate } = useAppMutation(postEmailSubscribe);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const { mutate, reset } = useAppMutation(postEmailSubscribe, {
+    onSuccess: () => {
+      reset();
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+    },
+  });
 
   const onSubmit = (data: EmailSubscribeParams) => {
     mutate(data);
@@ -108,6 +118,7 @@ const Footer = () => {
             <TextField
               variant="outlined"
               {...register("email")}
+              helperText={errors.email?.message}
               size="small"
               placeholder="Enter email address"
               sx={{
@@ -126,6 +137,14 @@ const Footer = () => {
             </Button>
           </Box>
         </form>
+        {showSuccess && (
+          <Paper
+            elevation={4}
+            sx={{ position: "absolute", bottom: 16, right: 16, padding: 2 }}
+          >
+            🚀 Successfully submitted!
+          </Paper>
+        )}
         <Box sx={{ display: "flex", gap: 1 }}>
           <Link to="#" style={{ textDecoration: "none", color: "white" }}>
             <Typography variant="body2">Facebook</Typography>

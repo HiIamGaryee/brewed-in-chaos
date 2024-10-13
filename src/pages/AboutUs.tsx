@@ -6,9 +6,10 @@ import {
   TextField,
   Link,
   Card,
+  Paper,
   CardContent,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../Layout";
 import { Phone, Email, Instagram, LocationOn } from "@mui/icons-material";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -20,7 +21,11 @@ import BusinessIcon from "@mui/icons-material/BusinessCenter";
 import CreativeIcon from "@mui/icons-material/Brush";
 import WebIcon from "@mui/icons-material/Web";
 import { useQuery } from "@tanstack/react-query";
-import { getAboutUs } from "../api";
+import { ContactUsParams, getAboutUs, postContactUs } from "../api";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+import { useAppMutation } from "../hooks/useAppMutation";
 
 const contactList = [
   { icon: <Phone color="primary" />, text: "(+60) 123456789", label: "Phone" },
@@ -72,6 +77,37 @@ const AboutUsPage = () => {
   //   queryKey: ["getEmailSubscribe", 10, 0], // Includes parameters in the query key
   //   queryFn: () => getEmailSubscribe(10, 0), // Calls the function with parameters
   // });
+
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .required("Email is required")
+      .email("Invalid email address"),
+    name: Yup.string().required("name is required"),
+    phone: Yup.string().required("phone is required"),
+    message: Yup.string().required("message is required"),
+  });
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<ContactUsParams>({
+    resolver: yupResolver(validationSchema),
+  });
+
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const { mutate, reset } = useAppMutation(postContactUs, {
+    onSuccess: () => {
+      reset();
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+    },
+  });
+
+  const onSubmit = (data: ContactUsParams) => {
+    mutate(data);
+  };
 
   const { data: aboutData } = useQuery({
     queryKey: ["aboutUs"],
@@ -240,36 +276,61 @@ const AboutUsPage = () => {
               </Box>
             </Grid>
             <Grid item xs={12} md={6}>
-              <Box
-                component="form"
-                noValidate
-                autoComplete="off"
-                sx={{ display: "flex", flexDirection: "column", gap: 2 }}
-              >
-                <TextField
-                  label="Email"
-                  variant="filled"
-                  sx={{ bgcolor: "light.main" }}
-                />
-                <TextField
-                  label="Name"
-                  variant="filled"
-                  sx={{ bgcolor: "light.main" }}
-                />
-                <TextField
-                  label="Phone"
-                  variant="filled"
-                  sx={{ bgcolor: "light.main" }}
-                />
-                <TextField
-                  label="Message"
-                  variant="filled"
-                  multiline
-                  rows={4}
-                  sx={{ bgcolor: "light.main" }}
-                />
-                <Button sx={{ mt: 2 }}>Submit</Button>
-              </Box>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Box
+                  // component="form"
+                  // noValidate
+                  // autoComplete="off"
+                  sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+                >
+                  <TextField
+                    {...register("email")}
+                    label="Email"
+                    variant="filled"
+                    sx={{ bgcolor: "light.main" }}
+                    helperText={errors.email?.message}
+                  />
+                  <TextField
+                    {...register("name")}
+                    label="Name"
+                    variant="filled"
+                    sx={{ bgcolor: "light.main" }}
+                    helperText={errors.name?.message}
+                  />
+                  <TextField
+                    {...register("phone")}
+                    label="Phone"
+                    variant="filled"
+                    sx={{ bgcolor: "light.main" }}
+                    helperText={errors.phone?.message}
+                  />
+                  <TextField
+                    {...register("message")}
+                    label="Message"
+                    variant="filled"
+                    multiline
+                    rows={4}
+                    sx={{ bgcolor: "light.main" }}
+                    helperText={errors.message?.message}
+                  />
+                  <Button sx={{ mt: 2 }} type="submit">
+                    Submit
+                  </Button>
+                </Box>
+                {showSuccess && (
+                  <Paper
+                    elevation={4}
+                    sx={{
+                      position: "absolute",
+                      bottom: 16,
+                      right: 16,
+                      padding: 2,
+                    }}
+                  >
+                    🚀 Successfully submitted!
+                  </Paper>
+                )}
+              </form>
             </Grid>
           </Grid>
         </Box>
