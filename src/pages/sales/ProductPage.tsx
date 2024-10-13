@@ -11,10 +11,12 @@ import Layout from "../../Layout";
 import Png from "../../assets/brewed-in-chaos/123.png";
 import { useNavigate } from "react-router-dom";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
+import { useQuery } from "@tanstack/react-query";
+import { getProductList } from "../../api/admin";
 // import { getAboutUs } from "../api";
 // import { useQuery } from "@tanstack/react-query";
 
-const bestSellerList = [
+const bestSellerList2 = [
   {
     img: Png,
     price: "Rm99.99",
@@ -91,6 +93,10 @@ const bestSellerList = [
 
 const ProductPage = () => {
   const navigate = useNavigate();
+  const { data: bestSellerList } = useQuery({
+    queryKey: ["getProductList", 10, 0],
+    queryFn: () => getProductList(10, 0),
+  });
 
   // const { data: aboutData } = useQuery({
   //   queryKey: ["aboutUs"],
@@ -120,7 +126,7 @@ const ProductPage = () => {
             Buy a new coffee bean and try it Now. No Coffee No Life.
           </Typography>
           <Grid container spacing={4}>
-            {bestSellerList.map((item, index) => (
+            {bestSellerList.data.map((item: any, index: number) => (
               <Grid
                 item
                 xs={12}

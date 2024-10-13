@@ -16,7 +16,7 @@ import usq3Img from "../assets/brewed-in-chaos/usq-3.jpeg";
 import Png from "../assets/brewed-in-chaos/package/SM.png";
 import { useNavigate } from "react-router-dom";
 import loginBg from "../assets/bg-home.jpg";
-import { getBestSeller } from "../api/admin";
+import { BestSellerResponse, getBestSeller } from "../api/admin";
 import { useQuery } from "@tanstack/react-query";
 
 // const bestSellerList = [
@@ -59,8 +59,7 @@ const USPList = [
 
 const HomePage = () => {
   const navigate = useNavigate();
-
-  const { data: bestSellerList } = useQuery({
+  const { data: bestSellerList } = useQuery<BestSellerResponse, Error>({
     queryKey: ["getBestSeller", 10, 0],
     queryFn: () => getBestSeller(10, 0),
   });
@@ -233,13 +232,13 @@ const HomePage = () => {
         </Typography>
 
         <Grid container spacing={4}>
-          {bestSellerList.data.map((item: any, index: number) => (
+          {bestSellerList?.data.map((item: any, index: number) => (
             <Grid
               item
               xs={12}
               sm={6}
               md={3}
-              key={item.code}
+              key={item._id}
               sx={{ mb: 4 }}
               onClick={() => navigate(`/product/${item.code}`)}
             >

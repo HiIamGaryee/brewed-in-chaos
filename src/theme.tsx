@@ -141,6 +141,17 @@ const getTheme = (mode: any) =>
               background: "#e2994f",
             },
           },
+          text: {
+            background: "#F5F3EF",
+            color: "#e2994f",
+            borderRadius: "4px",
+            "&:hover": {
+              background: "#F5F3EF",
+            },
+            "&:focus": {
+              background: "#F5F3EF",
+            },
+          },
           root: {
             background: "#e2994f",
             color: "#F5F3EF",
