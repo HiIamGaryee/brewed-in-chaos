@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Typography,
@@ -19,40 +19,46 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Layout from "../../Layout";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
-import Png from "../../assets/brewed-in-chaos/123.png";
 
-// Initial products data
-const initialProducts = [
-  { id: "1", name: "Analog Magazine Rack", price: 120, quantity: 2, img: Png },
-  { id: "2", name: "Closca Helmet", price: 132, quantity: 1, img: Png },
-  { id: "3", name: "Sigg Water Bottle", price: 23, quantity: 2, img: Png },
-];
+type CartProduct = {
+  name: string;
+  code: string;
+  price: number;
+  quantity: number;
+};
 
 const CartPage = () => {
-  const [products, setProducts] = useState(initialProducts);
+  const [products, setProducts] = useState<CartProduct[]>([]);
 
-  // Function to handle quantity change
-  const handleQuantityChange = (id: string, newQuantity: number) => {
-    const updatedProducts = products.map((product) => {
-      if (product.id === id) {
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    setProducts(cart);
+  }, []);
+
+  const handleQuantityChange = (code: string, newQuantity: number) => {
+    const updatedProducts = products.map((product: CartProduct) => {
+      if (product.code === code) {
         return { ...product, quantity: newQuantity };
       }
       return product;
     });
     setProducts(updatedProducts);
+    localStorage.setItem("cart", JSON.stringify(updatedProducts));
   };
 
   // Function to remove item from cart
-  const handleRemoveItem = (id: string) => {
-    const updatedProducts = products.filter((product) => product.id !== id);
+  const handleRemoveItem = (code: string) => {
+    const updatedProducts = products.filter(
+      (product: CartProduct) => product.code !== code
+    );
     setProducts(updatedProducts);
+    localStorage.setItem("cart", JSON.stringify(updatedProducts));
   };
 
   // Calculate the subtotal
-  const subtotal = products.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+  const subtotal = products.reduce((sum: number, item: CartProduct) => {
+    return sum + item.price * item.quantity;
+  }, 0);
 
   return (
     <Layout>
@@ -73,71 +79,87 @@ const CartPage = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {products.map((product) => (
-                  <TableRow key={product.id}>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={{ display: "flex", gap: 2, alignItems: "center" }}
-                    >
-                      <Box
-                        component="img"
-                        src={product.img}
-                        alt="Product Image"
-                        sx={{
-                          width: "80px",
-                          height: "80px",
-                          objectFit: "cover",
-                          p: 1,
-                        }}
-                      />
-                      {product.name}
-                    </TableCell>
-                    <TableCell align="right">${product.price}</TableCell>
-                    <TableCell align="right">
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "end",
-                        }}
-                      >
-                        <IconButton
-                          onClick={() =>
-                            handleQuantityChange(
-                              product.id,
-                              Math.max(1, product.quantity - 1)
-                            )
-                          }
-                          disabled={product.quantity <= 1}
-                        >
-                          <RemoveRoundedIcon />
-                        </IconButton>
-                        <Typography sx={{ mx: 2 }}>
-                          {product.quantity}
-                        </Typography>
-                        <IconButton
-                          onClick={() =>
-                            handleQuantityChange(
-                              product.id,
-                              product.quantity + 1
-                            )
-                          }
-                        >
-                          <AddRoundedIcon />
-                        </IconButton>
-                      </Box>
-                    </TableCell>
-                    <TableCell align="right">
-                      ${product.price * product.quantity}
-                    </TableCell>
-                    <TableCell align="right">
-                      <IconButton onClick={() => handleRemoveItem(product.id)}>
-                        <DeleteIcon />
-                      </IconButton>
+                {products.length === 0 ? (
+                  <TableRow>
+                    <TableCell colSpan={5} align="center">
+                      Your cart is empty.
                     </TableCell>
                   </TableRow>
-                ))}
+                ) : (
+                  products.map((product: any) => (
+                    <TableRow key={product.code}>
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        sx={{ display: "flex", gap: 2, alignItems: "center" }}
+                      >
+                        <Box
+                          component="img"
+                          src={(() => {
+                            try {
+                              return require(`../../assets/brewed-in-chaos/package-face/${product.code}.png`);
+                            } catch (error) {
+                              return require(`../../assets/brewed-in-chaos/package-face/default.png`);
+                            }
+                          })()}
+                          alt="Product Image"
+                          sx={{
+                            width: "80px",
+                            height: "80px",
+                            objectFit: "cover",
+                            p: 1,
+                          }}
+                        />
+                        {product.name}
+                      </TableCell>
+                      <TableCell align="right">${product.price}</TableCell>
+                      <TableCell align="right">
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "end",
+                          }}
+                        >
+                          <IconButton
+                            onClick={() =>
+                              handleQuantityChange(
+                                product.code,
+                                Math.max(1, product.quantity - 1)
+                              )
+                            }
+                            disabled={product.quantity <= 1}
+                          >
+                            <RemoveRoundedIcon />
+                          </IconButton>
+                          <Typography sx={{ mx: 2 }}>
+                            {product.quantity}
+                          </Typography>
+                          <IconButton
+                            onClick={() =>
+                              handleQuantityChange(
+                                product.code,
+                                product.quantity + 1
+                              )
+                            }
+                          >
+                            <AddRoundedIcon />
+                          </IconButton>
+                        </Box>
+                      </TableCell>
+                      <TableCell align="right">
+                        ${product.price * product.quantity}
+                      </TableCell>
+                      <TableCell align="right">
+                        <IconButton
+                          onClick={() => handleRemoveItem(product.code)}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
               </TableBody>
             </Table>
           </TableContainer>
@@ -151,14 +173,6 @@ const CartPage = () => {
                   <Typography>Subtotal: ${subtotal}</Typography>
                   <Typography>Shipping: Free</Typography>
                   <Typography>Total: ${subtotal}</Typography>{" "}
-                </Box>
-                <Box>
-                  <Typography variant="h6">Delivery Address</Typography>
-                  <Typography>xxxx,xxxxxxxx,xxxxxx, xxxx</Typography>
-                </Box>
-                <Box>
-                  <Typography variant="h6">Mobile No</Typography>
-                  <Typography>012-321231</Typography>
                 </Box>
                 <Button variant="contained" color="primary" sx={{ mt: 2 }}>
                   Checkout

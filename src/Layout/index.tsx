@@ -41,8 +41,8 @@ const Layout = ({ children }: LayoutProps) => {
         sx={{
           position: "fixed",
           cursor: "pointer",
-          bottom: 20,
-          right: 20,
+          bottom: 15,
+          right: 30,
           zIndex: 1000,
           maxHeight: "80px",
           borderRadius: "20px",

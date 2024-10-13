@@ -322,9 +322,10 @@ const AboutUsPage = () => {
                     elevation={4}
                     sx={{
                       position: "absolute",
-                      bottom: 16,
+                      bottom: 120,
                       right: 16,
                       padding: 2,
+                      borderRadius: "8px",
                     }}
                   >
                     🚀 Successfully submitted!

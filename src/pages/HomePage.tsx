@@ -15,32 +15,9 @@ import usq2Img from "../assets/brewed-in-chaos/usq-2.jpeg";
 import usq3Img from "../assets/brewed-in-chaos/usq-3.jpeg";
 import Png from "../assets/brewed-in-chaos/package/SM.png";
 import { useNavigate } from "react-router-dom";
-import loginBg from "../assets/bg-home.jpg";
-import { BestSellerResponse, getBestSeller } from "../api/admin";
+import homeBg from "../assets/brewedinchaosgif.gif";
+import { getBestSeller } from "../api/admin";
 import { useQuery } from "@tanstack/react-query";
-
-const bestSellerList = [
-  {
-    img: Png,
-    name: "Sumatra Mandheling",
-    code: "SM",
-  },
-  {
-    img: Png,
-    name: "Colombian Supremo",
-    code: "CS",
-  },
-  {
-    img: Png,
-    name: "Jamaican Blue Mountain",
-    code: "JBM",
-  },
-  {
-    img: Png,
-    name: "Kenyan AA",
-    code: "KAA",
-  },
-];
 
 const USPList = [
   {
@@ -71,9 +48,10 @@ const HomePage = () => {
         container
         p={4}
         sx={{
-          backgroundImage: `url(${loginBg})`,
+          backgroundImage: `url(${homeBg})`,
           backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
+          // minHeight: "300px",
+          // backgroundRepeat: "no-repeat",
         }}
       >
         <Grid
@@ -104,7 +82,7 @@ const HomePage = () => {
                       Discover Your
                     </Typography>
                     <Typography
-                      color="light.main"
+                      color="primary.main"
                       variant="h3"
                       fontWeight="bold"
                     >
@@ -158,6 +136,7 @@ const HomePage = () => {
               cursor: "pointer",
               mt: { xs: 8, md: 0 },
               maxHeight: "500px",
+              display: "none",
               // animation: "bounce 2s infinite",
               // "@keyframes bounce": {
               //   "0%, 100%": {

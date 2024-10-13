@@ -140,7 +140,13 @@ const Footer = () => {
         {showSuccess && (
           <Paper
             elevation={4}
-            sx={{ position: "absolute", bottom: 16, right: 16, padding: 2 }}
+            sx={{
+              position: "absolute",
+              bottom: 120,
+              right: 16,
+              padding: 2,
+              borderRadius: "8px",
+            }}
           >
             🚀 Successfully submitted!
           </Paper>

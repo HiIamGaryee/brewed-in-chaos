@@ -7,23 +7,54 @@ import {
   Card,
   CardMedia,
   IconButton,
+  Paper,
   Stack,
 } from "@mui/material";
 import Layout from "../../Layout";
 import { useLocation, useParams } from "react-router-dom";
-import Png from "../../assets/brewed-in-chaos/123.png";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
+
 const ProductDetailPage = () => {
   const location = useLocation();
   const product = location.state.product;
   const { productCode } = useParams();
 
   const [quantity, setQuantity] = useState(1);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   // Functions to handle quantity changes
   const handleIncrease = () => setQuantity(quantity + 1);
   const handleDecrease = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
+
+  // Function to add product to local storage
+  const handleAddToCart = () => {
+    // Get the cart from local storage (or initialize an empty array)
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    // Check if the product already exists in the cart
+    const existingProduct = cart.find(
+      (item: any) => item.code === product.code
+    );
+
+    if (existingProduct) {
+      // Update the quantity of the existing product
+      existingProduct.quantity += quantity;
+    } else {
+      // Add new product to the cart
+      cart.push({
+        name: product.name,
+        code: product.code,
+        price: product.price,
+        quantity: quantity,
+      });
+    }
+
+    // Save the updated cart back to local storage
+    localStorage.setItem("cart", JSON.stringify(cart));
+    setShowSuccess(true);
+    setTimeout(() => setShowSuccess(false), 3000);
+  };
 
   return (
     <Layout>
@@ -88,11 +119,11 @@ const ProductDetailPage = () => {
                   </IconButton>
                 </Box>
 
-                <Box>
+                <Box gap={2}>
                   <Button
                     variant="contained"
                     color="primary"
-                    // onClick={() => navigate(`/purchase/${product.id}`)}
+                    onClick={handleAddToCart}
                   >
                     Add to Cart
                   </Button>
@@ -102,6 +133,21 @@ const ProductDetailPage = () => {
           </Box>
         </Grid>
       </Grid>
+      {showSuccess && (
+        <Paper
+          elevation={4}
+          sx={{
+            position: "absolute",
+            bottom: 120,
+            right: 16,
+            padding: 2,
+            zIndex: 1100,
+            borderRadius: "8px",
+          }}
+        >
+          🚀 Successfully add to Cart!
+        </Paper>
+      )}
     </Layout>
   );
 };

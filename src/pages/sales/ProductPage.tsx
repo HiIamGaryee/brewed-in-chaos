@@ -4,92 +4,15 @@ import {
   Grid,
   Card,
   CardContent,
+  Paper,
   IconButton,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../../Layout";
-import Png from "../../assets/brewed-in-chaos/123.png";
 import { useNavigate } from "react-router-dom";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import { useQuery } from "@tanstack/react-query";
 import { getProductList } from "../../api/admin";
-// import { getAboutUs } from "../api";
-// import { useQuery } from "@tanstack/react-query";
-
-const bestSellerList2 = [
-  {
-    img: Png,
-    price: "Rm99.99",
-    name: "Sumatra Mandheling",
-    code: "SM",
-  },
-  {
-    img: Png,
-    price: "Rm99.99",
-    name: "Colombian Supremo",
-    code: "CS",
-  },
-  {
-    img: Png,
-    price: "Rm99.99",
-    name: "Jamaican Blue Mountain",
-    code: "JBM",
-  },
-  {
-    img: Png,
-    price: "Rm99.99",
-    name: "Kenyan AA",
-    code: "KAA",
-  },
-  {
-    img: Png,
-    price: "Rm99.99",
-    name: "Sumatra Mandheling",
-    code: "SM",
-  },
-  {
-    img: Png,
-    price: "Rm99.99",
-    name: "Colombian Supremo",
-    code: "CS",
-  },
-  {
-    img: Png,
-    price: "Rm99.99",
-    name: "Jamaican Blue Mountain",
-    code: "JBM",
-  },
-  {
-    img: Png,
-    price: "Rm99.99",
-    name: "Kenyan AA",
-    code: "KAA",
-  },
-  {
-    img: Png,
-    price: "Rm99.99",
-    name: "Sumatra Mandheling",
-    code: "SM",
-  },
-  {
-    img: Png,
-    price: "Rm99.99",
-    name: "Colombian Supremo",
-    code: "CS",
-  },
-  {
-    img: Png,
-    price: "Rm99.99",
-    name: "Jamaican Blue Mountain",
-    code: "JBM",
-  },
-  {
-    img: Png,
-    price: "Rm99.99",
-    name: "Kenyan AA",
-    code: "KAA",
-  },
-];
 
 const ProductPage = () => {
   const navigate = useNavigate();
@@ -97,11 +20,31 @@ const ProductPage = () => {
     queryKey: ["getProductList", 50, 0],
     queryFn: () => getProductList(50, 0),
   });
+  const [showSuccess, setShowSuccess] = useState(false);
 
-  // const { data: aboutData } = useQuery({
-  //   queryKey: ["aboutUs"],
-  //   queryFn: getAboutUs,
-  // });
+  const handleAddToCart = (product: any, event: React.MouseEvent) => {
+    event.stopPropagation(); // Prevent navigation to product details
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    const existingProduct = cart.find(
+      (item: any) => item.code === product.code
+    );
+
+    if (existingProduct) {
+      existingProduct.quantity += 1;
+    } else {
+      cart.push({
+        name: product.name,
+        code: product.code,
+        price: product.price,
+        quantity: 1,
+      });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    setShowSuccess(true);
+    setTimeout(() => setShowSuccess(false), 3000);
+  };
 
   return (
     <Layout>
@@ -113,12 +56,7 @@ const ProductPage = () => {
           minHeight: "100vh",
         }}
       >
-        {/* <p>
-          <strong>About:</strong> {aboutData?.about}
-        </p> */}
-
         <Box sx={{ maxWidth: 1200, margin: "auto", textAlign: "center" }}>
-          {/* Original About Us Content */}
           <Typography variant="h4" gutterBottom fontWeight="bold">
             Buy Now
           </Typography>
@@ -126,7 +64,7 @@ const ProductPage = () => {
             Buy a new coffee bean and try it Now. No Coffee No Life.
           </Typography>
           <Grid container spacing={4}>
-            {bestSellerList?.data?.map((item: any, index: number) => (
+            {bestSellerList?.data?.map((item: any) => (
               <Grid
                 item
                 xs={12}
@@ -184,7 +122,9 @@ const ProductPage = () => {
                     >
                       $ {item.price}
                     </Typography>
-                    <IconButton>
+                    <IconButton
+                      onClick={(event) => handleAddToCart(item, event)}
+                    >
                       <ShoppingCartRoundedIcon />
                     </IconButton>
                   </Box>
@@ -194,6 +134,21 @@ const ProductPage = () => {
           </Grid>
         </Box>
       </Box>
+      {showSuccess && (
+        <Paper
+          elevation={4}
+          sx={{
+            position: "absolute",
+            bottom: 120,
+            right: 16,
+            padding: 2,
+            zIndex: 1100,
+            borderRadius: "8px",
+          }}
+        >
+          🚀 Successfully add to Cart!
+        </Paper>
+      )}
     </Layout>
   );
 };
