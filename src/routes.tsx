@@ -21,6 +21,7 @@ import ProductPage from "./pages/sales/ProductPage";
 import CartPage from "./pages/sales/CartPage";
 import CheckoutPage from "./pages/sales/CheckoutPage";
 import ProductDetailPage from "./pages/sales/ProductDetailPage";
+import AddListingPage from "./pages/admin/AddListing";
 
 // Layout component that specifies the default error element
 const Layout = () => {
@@ -53,6 +54,7 @@ export const router = createBrowserRouter([
       { path: "product/:productCode", element: <ProductDetailPage /> },
       { path: "/cart", element: <CartPage /> },
       { path: "/checkout", element: <CheckoutPage /> },
+      { path: "/admin/add-listing", element: <AddListingPage /> },
       { path: "/wizardz", element: <WizardzPage /> },
       {
         path: "/member/profile",

@@ -13,31 +13,34 @@ import coffeeImg from "../assets/coffee1.png";
 import usq1Img from "../assets/brewed-in-chaos/usq-1.jpeg";
 import usq2Img from "../assets/brewed-in-chaos/usq-2.jpeg";
 import usq3Img from "../assets/brewed-in-chaos/usq-3.jpeg";
-import Png from "../assets/brewed-in-chaos/123.png";
+import Png from "../assets/brewed-in-chaos/package/SM.png";
 import { useNavigate } from "react-router-dom";
+import loginBg from "../assets/bg-home.jpg";
+import { getBestSeller } from "../api/admin";
+import { useQuery } from "@tanstack/react-query";
 
-const bestSellerList = [
-  {
-    img: Png,
-    name: "Sumatra Mandheling",
-    code: "SM",
-  },
-  {
-    img: Png,
-    name: "Colombian Supremo",
-    code: "CS",
-  },
-  {
-    img: Png,
-    name: "Jamaican Blue Mountain",
-    code: "JBM",
-  },
-  {
-    img: Png,
-    name: "Kenyan AA",
-    code: "KAA",
-  },
-];
+// const bestSellerList = [
+//   {
+//     img: Png,
+//     name: "Sumatra Mandheling",
+//     code: "SM",
+//   },
+//   {
+//     img: Png,
+//     name: "Colombian Supremo",
+//     code: "CS",
+//   },
+//   {
+//     img: Png,
+//     name: "Jamaican Blue Mountain",
+//     code: "JBM",
+//   },
+//   {
+//     img: Png,
+//     name: "Kenyan AA",
+//     code: "KAA",
+//   },
+// ];
 
 const USPList = [
   {
@@ -57,9 +60,22 @@ const USPList = [
 const HomePage = () => {
   const navigate = useNavigate();
 
+  const { data: bestSellerList } = useQuery({
+    queryKey: ["getBestSeller", 10, 0],
+    queryFn: () => getBestSeller(10, 0),
+  });
+
   return (
     <Layout>
-      <Grid container p={4}>
+      <Grid
+        container
+        p={4}
+        sx={{
+          backgroundImage: `url(${loginBg})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         <Grid
           item
           xs={12}
@@ -88,7 +104,7 @@ const HomePage = () => {
                       Discover Your
                     </Typography>
                     <Typography
-                      color="primary.main"
+                      color="light.main"
                       variant="h3"
                       fontWeight="bold"
                     >
@@ -217,7 +233,7 @@ const HomePage = () => {
         </Typography>
 
         <Grid container spacing={4}>
-          {bestSellerList.map((item, index) => (
+          {bestSellerList.data.map((item: any, index: number) => (
             <Grid
               item
               xs={12}
@@ -231,7 +247,7 @@ const HomePage = () => {
                 <CardContent>
                   <Box
                     component="img"
-                    src={item.img}
+                    src={require(`../assets/brewed-in-chaos/package-face/${item.code}.png`)}
                     alt="Best Seller Image"
                     sx={{
                       cursor: "pointer",
