@@ -94,8 +94,8 @@ const bestSellerList2 = [
 const ProductPage = () => {
   const navigate = useNavigate();
   const { data: bestSellerList } = useQuery({
-    queryKey: ["getProductList", 10, 0],
-    queryFn: () => getProductList(10, 0),
+    queryKey: ["getProductList", 50, 0],
+    queryFn: () => getProductList(50, 0),
   });
 
   // const { data: aboutData } = useQuery({
@@ -139,8 +139,13 @@ const ProductPage = () => {
                   <CardContent>
                     <Box
                       component="img"
-                      // src={item.img}
-                      src={require(`../../assets/brewed-in-chaos/package-face/${item.code}.png`)}
+                      src={(() => {
+                        try {
+                          return require(`../../assets/brewed-in-chaos/package-face/${item.code}.png`);
+                        } catch (error) {
+                          return require(`../../assets/brewed-in-chaos/package-face/default.png`);
+                        }
+                      })()}
                       alt="Product Image"
                       sx={{
                         cursor: "pointer",

@@ -48,9 +48,9 @@ const ProductListPage = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const { data: bestSellerList } = useQuery({
-    queryKey: ["getProductList", 10, 0],
-    queryFn: () => getProductList(10, 0),
+  const { data: bestSellerList, refetch } = useQuery({
+    queryKey: ["getProductList", 50, 0],
+    queryFn: () => getProductList(50, 0),
   });
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -59,7 +59,7 @@ const ProductListPage = () => {
       reset();
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 3000);
-      bestSellerList.refetch();
+      refetch();
     },
   });
 
@@ -142,7 +142,13 @@ const ProductListPage = () => {
                       <TableCell>
                         <Box
                           component="img"
-                          src={require(`../../assets/brewed-in-chaos/package-face/${product.code}.png`)}
+                          src={(() => {
+                            try {
+                              return require(`../../assets/brewed-in-chaos/package-face/${product.code}.png`);
+                            } catch (error) {
+                              return require(`../../assets/brewed-in-chaos/package-face/default.png`);
+                            }
+                          })()}
                           alt="Product Image"
                           sx={{
                             width: "80px",
