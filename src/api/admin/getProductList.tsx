@@ -15,3 +15,14 @@ export const getProductList = async (limit = 10, offset = 0) => {
     throw error;
   }
 };
+
+// import api from "../../utils/axiosConfig";
+
+// export const getProductList = async () => {
+//   try {
+//     const response = await api.get("/product");
+//     return response.data;
+//   } catch (error) {
+//     throw error;
+//   }
+// };

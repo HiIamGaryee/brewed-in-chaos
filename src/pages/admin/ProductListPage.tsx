@@ -13,6 +13,7 @@ import {
   Button,
   Grid,
   Stack,
+  Paper,
 } from "@mui/material";
 import Layout from "../../Layout";
 import { useForm } from "react-hook-form";
@@ -25,25 +26,6 @@ import {
 } from "../../api/admin";
 import { useAppMutation } from "../../hooks/useAppMutation";
 import { useQuery } from "@tanstack/react-query";
-
-const bestSellerList = [
-  {
-    name: "Sumatra Mandheling",
-    code: "SM",
-  },
-  {
-    name: "Colombian Supremo",
-    code: "CS",
-  },
-  {
-    name: "Jamaican Blue Mountain",
-    code: "JBM",
-  },
-  {
-    name: "Kenyan AA",
-    code: "KAA",
-  },
-];
 
 const ProductListPage = () => {
   const validationSchema = Yup.object({
@@ -66,14 +48,18 @@ const ProductListPage = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  // const { data: bestSellerList } = useQuery({
-  //   queryKey: ["getProductList", 10, 0],
-  //   queryFn: () => getProductList(10, 0),
-  // });
+  const { data: bestSellerList } = useQuery({
+    queryKey: ["getProductList", 10, 0],
+    queryFn: () => getProductList(10, 0),
+  });
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const { mutate, reset } = useAppMutation(postProductList, {
     onSuccess: () => {
       reset();
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+      bestSellerList.refetch();
     },
   });
 
@@ -102,16 +88,20 @@ const ProductListPage = () => {
                 <TableHead>
                   <TableRow>
                     <TableCell sx={{ minWidth: "200px" }}>Name</TableCell>
-                    <TableCell>Code</TableCell>
-                    <TableCell>Category</TableCell>
+                    <TableCell sx={{ minWidth: "150px" }}>Code</TableCell>
+
+                    <TableCell sx={{ minWidth: "150px" }}>Category</TableCell>
                     <TableCell sx={{ minWidth: "150px" }}>Price</TableCell>
                     <TableCell sx={{ minWidth: "200px" }}>Type</TableCell>
-                    <TableCell>Description</TableCell>
+                    <TableCell sx={{ minWidth: "250px" }}>
+                      Description
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>Img</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {bestSellerList.map((product: any, index: number) => (
-                    <TableRow key={product.code}>
+                  {bestSellerList?.data?.map((product: any, index: number) => (
+                    <TableRow key={product.code} sx={{ verticalAlign: "top" }}>
                       <TableCell
                         component="th"
                         scope="row"
@@ -119,19 +109,49 @@ const ProductListPage = () => {
                       >
                         {index + 1}. {product.name}
                       </TableCell>
-                      <TableCell>{product.code}</TableCell>
-                      <TableCell>{product.category}</TableCell>
+                      <TableCell sx={{ minWidth: "150px" }}>
+                        {product.code}
+                      </TableCell>
 
                       <TableCell sx={{ minWidth: "150px" }}>
-                        <Box>{product.price} </Box>
-                        <Box>Promo: {product.promo} </Box>
+                        {product.category}
+                      </TableCell>
+
+                      <TableCell sx={{ minWidth: "150px" }}>
+                        <Box>$ {product.price} </Box>
+                        <Box>
+                          Promo: {product.promo ? `$${product.promo}` : "-"}
+                        </Box>
                       </TableCell>
                       <TableCell sx={{ minWidth: "200px" }}>
-                        <Box>Acidity: {product.acidity}</Box>
-                        <Box>Roast: {product.roast}</Box>
-                        <Box>Processing: {product.processing}</Box>
+                        <Box>
+                          Acidity:{" "}
+                          {product.acidity ? `${product.acidity}` : "-"}
+                        </Box>
+                        <Box>
+                          Roast: {product.roast ? `${product.roast}` : "-"}
+                        </Box>
+                        <Box>
+                          Processing:{" "}
+                          {product.processing ? `${product.processing}` : "-"}
+                        </Box>
                       </TableCell>
-                      <TableCell>{product.description}</TableCell>
+                      <TableCell sx={{ minWidth: "250px" }}>
+                        {product.description}
+                      </TableCell>
+                      <TableCell>
+                        <Box
+                          component="img"
+                          src={require(`../../assets/brewed-in-chaos/package-face/${product.code}.png`)}
+                          alt="Product Image"
+                          sx={{
+                            width: "80px",
+                            height: "80px",
+                            objectFit: "cover",
+                            p: 1,
+                          }}
+                        />
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -219,6 +239,19 @@ const ProductListPage = () => {
                 </Button>
               </Stack>
             </form>
+            {showSuccess && (
+              <Paper
+                elevation={4}
+                sx={{
+                  position: "absolute",
+                  bottom: 16,
+                  right: 16,
+                  padding: 2,
+                }}
+              >
+                🚀 Successfully submitted!
+              </Paper>
+            )}
           </Grid>
         </Grid>
       </Box>

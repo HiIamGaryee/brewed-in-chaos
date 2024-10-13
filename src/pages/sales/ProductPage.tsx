@@ -126,7 +126,7 @@ const ProductPage = () => {
             Buy a new coffee bean and try it Now. No Coffee No Life.
           </Typography>
           <Grid container spacing={4}>
-            {bestSellerList.data.map((item: any, index: number) => (
+            {bestSellerList?.data?.map((item: any, index: number) => (
               <Grid
                 item
                 xs={12}
@@ -139,8 +139,9 @@ const ProductPage = () => {
                   <CardContent>
                     <Box
                       component="img"
-                      src={item.img}
-                      alt="Best Seller Image"
+                      // src={item.img}
+                      src={require(`../../assets/brewed-in-chaos/package-face/${item.code}.png`)}
+                      alt="Product Image"
                       sx={{
                         cursor: "pointer",
                         mt: { xs: 8, md: 0 },
@@ -170,7 +171,7 @@ const ProductPage = () => {
                       color="primary.main"
                       fontWeight="bold"
                     >
-                      {item.price}
+                      $ {item.price}
                     </Typography>
                     <IconButton>
                       <ShoppingCartRoundedIcon />

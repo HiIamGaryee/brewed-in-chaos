@@ -59,7 +59,8 @@ const USPList = [
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const { data: bestSellerLis2 } = useQuery<BestSellerResponse, Error>({
+
+  const { data: bestSellerList } = useQuery({
     queryKey: ["getBestSeller", 10, 0],
     queryFn: () => getBestSeller(10, 0),
   });
@@ -232,7 +233,7 @@ const HomePage = () => {
         </Typography>
 
         <Grid container spacing={4}>
-          {bestSellerList?.map((item: any, index: number) => (
+          {bestSellerList?.data?.map((item: any, index: number) => (
             <Grid
               item
               xs={12}
