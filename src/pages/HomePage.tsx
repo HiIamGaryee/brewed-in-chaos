@@ -19,28 +19,28 @@ import loginBg from "../assets/bg-home.jpg";
 import { BestSellerResponse, getBestSeller } from "../api/admin";
 import { useQuery } from "@tanstack/react-query";
 
-// const bestSellerList = [
-//   {
-//     img: Png,
-//     name: "Sumatra Mandheling",
-//     code: "SM",
-//   },
-//   {
-//     img: Png,
-//     name: "Colombian Supremo",
-//     code: "CS",
-//   },
-//   {
-//     img: Png,
-//     name: "Jamaican Blue Mountain",
-//     code: "JBM",
-//   },
-//   {
-//     img: Png,
-//     name: "Kenyan AA",
-//     code: "KAA",
-//   },
-// ];
+const bestSellerList = [
+  {
+    img: Png,
+    name: "Sumatra Mandheling",
+    code: "SM",
+  },
+  {
+    img: Png,
+    name: "Colombian Supremo",
+    code: "CS",
+  },
+  {
+    img: Png,
+    name: "Jamaican Blue Mountain",
+    code: "JBM",
+  },
+  {
+    img: Png,
+    name: "Kenyan AA",
+    code: "KAA",
+  },
+];
 
 const USPList = [
   {
@@ -59,7 +59,7 @@ const USPList = [
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const { data: bestSellerList } = useQuery<BestSellerResponse, Error>({
+  const { data: bestSellerLis2 } = useQuery<BestSellerResponse, Error>({
     queryKey: ["getBestSeller", 10, 0],
     queryFn: () => getBestSeller(10, 0),
   });
@@ -232,7 +232,7 @@ const HomePage = () => {
         </Typography>
 
         <Grid container spacing={4}>
-          {bestSellerList?.data.map((item: any, index: number) => (
+          {bestSellerList?.map((item: any, index: number) => (
             <Grid
               item
               xs={12}
