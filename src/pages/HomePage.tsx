@@ -49,8 +49,8 @@ const HomePage = () => {
         p={4}
         sx={{
           backgroundImage: `url(${homeBg})`,
-          backgroundSize: "cover",
-          // minHeight: "300px",
+          backgroundSize: "100% 100%",
+          minHeight: "300px",
           // backgroundRepeat: "no-repeat",
         }}
       >
