@@ -94,7 +94,7 @@ const PackagePage = () => {
               >
                 <CardContent>
                   <Typography variant="body2">{pkg.customers}</Typography>
-                  <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
+                  <Typography variant="h4" fontWeight="bold" sx={{ my: 2 }}>
                     {pkg.monthlyPrice}
                   </Typography>
                   <Typography variant="body1" sx={{ mb: 2 }}>

@@ -74,13 +74,13 @@ const ProductListPage = () => {
   };
 
   const navigate = useNavigate();
-  const handleDelete = (id: string) => {
-    postDeleteProductList(id)
-      .then(() => {
-        refetch();
-      })
-      .catch(() => {});
-  };
+  // const handleDelete = (id: string) => {
+  //   postDeleteProductList(id)
+  //     .then(() => {
+  //       refetch();
+  //     })
+  //     .catch(() => {});
+  // };
   return (
     <Layout>
       <Box sx={{ p: 4 }}>
@@ -122,7 +122,7 @@ const ProductListPage = () => {
                       Description
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>Img</TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>Action</TableCell>
+                    {/* <TableCell sx={{ textAlign: "center" }}>Action</TableCell> */}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -184,14 +184,14 @@ const ProductListPage = () => {
                           }}
                         />
                       </TableCell>
-                      <TableCell>
+                      {/* <TableCell>
                         <IconButton
                           color="error"
                           onClick={() => handleDelete(product._id)}
                         >
                           <DeleteOutlineRoundedIcon />
                         </IconButton>
-                      </TableCell>
+                      </TableCell> */}
                     </TableRow>
                   ))}
                 </TableBody>
