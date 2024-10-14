@@ -20,13 +20,14 @@ import InventoryRoundedIcon from "@mui/icons-material/InventoryRounded";
 import AddIcCallRoundedIcon from "@mui/icons-material/AddIcCallRounded";
 import MarkEmailReadRoundedIcon from "@mui/icons-material/MarkEmailReadRounded";
 import { useNavigate } from "react-router-dom";
+import { getCheckoutList } from "../../api/admin/getCheckoutList";
 
 const SalesList = () => {
   const navigate = useNavigate();
 
   const { data: subscribleList } = useQuery({
-    queryKey: ["getEmailSubscribe", 50, 0],
-    queryFn: () => getEmailSubscribe(50, 0),
+    queryKey: ["getCheckoutList", 50, 0],
+    queryFn: () => getCheckoutList(50, 0),
   });
 
   return (
@@ -60,17 +61,58 @@ const SalesList = () => {
               <Table>
                 <TableHead>
                   <TableRow>
+                    <TableCell>#</TableCell>
                     <TableCell>Email</TableCell>
+                    <TableCell>Shipping</TableCell>
+                    <TableCell>Total</TableCell>
+                    <TableCell>Address</TableCell>
+                    <TableCell>Mobile</TableCell>
+                    <TableCell>Status</TableCell>
+                    <TableCell>Product Code</TableCell>
+                    <TableCell>Product Price</TableCell>
+                    <TableCell>Product Quantity</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {subscribleList?.data?.map((product: any, index: number) => (
-                    <TableRow key={product.code} sx={{ verticalAlign: "top" }}>
-                      <TableCell>
-                        {index + 1}. {product.email}
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {subscribleList?.data?.flatMap((order: any, index: number) =>
+                    order.products.map((product: any, productIndex: number) => (
+                      <TableRow
+                        key={`${order._id}-${productIndex}`}
+                        sx={{ verticalAlign: "top" }}
+                      >
+                        {/* Display order details only on the first product row */}
+                        {productIndex === 0 && (
+                          <>
+                            <TableCell rowSpan={order.products.length}>
+                              {index + 1}
+                            </TableCell>
+                            <TableCell rowSpan={order.products.length}>
+                              {order.email}
+                            </TableCell>
+                            <TableCell rowSpan={order.products.length}>
+                              {order.shipping}
+                            </TableCell>
+                            <TableCell rowSpan={order.products.length}>
+                              {order.total}
+                            </TableCell>
+                            <TableCell rowSpan={order.products.length}>
+                              {order.address}
+                            </TableCell>
+                            <TableCell rowSpan={order.products.length}>
+                              {order.mobile}
+                            </TableCell>
+                            <TableCell rowSpan={order.products.length}>
+                              {order.status}
+                            </TableCell>
+                          </>
+                        )}
+                        {/* Product details for each row */}
+                        <TableCell>{product.code}</TableCell>
+                        <TableCell>{product.price}</TableCell>
+                        <TableCell>{product.quantity}</TableCell>
+                      </TableRow>
+                    ))
+                  )}
                 </TableBody>
               </Table>
             </TableContainer>

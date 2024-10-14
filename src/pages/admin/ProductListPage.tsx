@@ -22,6 +22,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import {
   getProductList,
+  postDeleteProductList,
   postProductList,
   ProductListParams,
 } from "../../api/admin";
@@ -31,7 +32,7 @@ import MarkEmailReadRoundedIcon from "@mui/icons-material/MarkEmailReadRounded";
 import AddIcCallRoundedIcon from "@mui/icons-material/AddIcCallRounded";
 import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
 import { useNavigate } from "react-router-dom";
-
+import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 const ProductListPage = () => {
   const validationSchema = Yup.object({
     code: Yup.string().required("Email is required"),
@@ -73,7 +74,13 @@ const ProductListPage = () => {
   };
 
   const navigate = useNavigate();
-
+  const handleDelete = (id: string) => {
+    postDeleteProductList(id)
+      .then(() => {
+        refetch();
+      })
+      .catch(() => {});
+  };
   return (
     <Layout>
       <Box sx={{ p: 4 }}>
@@ -115,6 +122,7 @@ const ProductListPage = () => {
                       Description
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>Img</TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>Action</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -175,6 +183,14 @@ const ProductListPage = () => {
                             p: 1,
                           }}
                         />
+                      </TableCell>
+                      <TableCell>
+                        <IconButton
+                          color="error"
+                          onClick={() => handleDelete(product._id)}
+                        >
+                          <DeleteOutlineRoundedIcon />
+                        </IconButton>
                       </TableCell>
                     </TableRow>
                   ))}

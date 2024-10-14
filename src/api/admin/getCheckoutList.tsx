@@ -1,9 +1,9 @@
 import api from "../../utils/axiosConfig";
 
-export const getProductList = async (limit = 50, offset = 0) => {
+export const getCheckoutList = async (limit = 50, offset = 0) => {
   try {
     // Adding query parameters directly in the URL or as a params object
-    const response = await api.get("/product", {
+    const response = await api.get("/checkout", {
       params: {
         limit, // shorthand for limit: limit
         offset, // shorthand for offset: offset

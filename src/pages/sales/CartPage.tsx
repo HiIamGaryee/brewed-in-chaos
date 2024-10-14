@@ -14,11 +14,14 @@ import {
   TableRow,
   Stack,
   Grid,
+  TextField,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Layout from "../../Layout";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
+import { useAppMutation } from "../../hooks/useAppMutation";
+import { CheckoutParams, postCheckout } from "../../api/admin";
 
 type CartProduct = {
   name: string;
@@ -29,6 +32,17 @@ type CartProduct = {
 
 const CartPage = () => {
   const [products, setProducts] = useState<CartProduct[]>([]);
+  const [mobile, setMobile] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+
+  const { mutate, reset } = useAppMutation(postCheckout, {
+    onSuccess: () => {
+      reset();
+      setProducts([]); // Clear cart after successful checkout
+      localStorage.removeItem("cart"); // Clear localStorage cart
+    },
+  });
 
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -59,6 +73,25 @@ const CartPage = () => {
   const subtotal = products.reduce((sum: number, item: CartProduct) => {
     return sum + item.price * item.quantity;
   }, 0);
+
+  const handleCheckout = () => {
+    const checkoutData: CheckoutParams = {
+      shipping: "0",
+      total: subtotal.toFixed(2),
+      address,
+      mobile,
+      email,
+      status: "pending",
+      products: products.map(({ code, price, quantity }) => ({
+        code,
+        price: price.toString(), // Ensure price is a string
+        quantity,
+      })),
+    };
+
+    // Call the mutate function to submit the checkout
+    mutate(checkoutData);
+  };
 
   return (
     <Layout>
@@ -175,14 +208,38 @@ const CartPage = () => {
                   <Typography>Total: ${subtotal}</Typography>
                 </Box>
                 <Box>
-                  <Typography variant="h6">Delivery Address</Typography>
-                  <Typography>xxxx,xxxxxxxx,xxxxxx, xxxx</Typography>
+                  <Typography variant="h6" mb={2}>
+                    Personal Details
+                  </Typography>
+                  <Stack spacing={2}>
+                    <TextField
+                      label="Delivery Address"
+                      fullWidth
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                    />
+
+                    <TextField
+                      label="Mobile No"
+                      fullWidth
+                      value={mobile}
+                      onChange={(e) => setMobile(e.target.value)}
+                    />
+
+                    <TextField
+                      label="Email"
+                      fullWidth
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </Stack>
                 </Box>
-                <Box>
-                  <Typography variant="h6">Mobile No</Typography>
-                  <Typography>012-321231</Typography>
-                </Box>
-                <Button variant="contained" color="primary" sx={{ mt: 2 }}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{ mt: 2 }}
+                  onClick={handleCheckout}
+                >
                   Checkout
                 </Button>
               </Stack>
