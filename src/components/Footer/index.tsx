@@ -15,9 +15,9 @@ const footerLinks = [
     title: "SITEMAP",
     links: [
       { name: "About us", link: "/about-us" },
-      { name: "Services", link: "/services" },
+      { name: "Services", link: "#" },
       // { name: "Blog", link: "/blog" },
-      { name: "Upcoming Movies", link: "/upcoming-movies" },
+      { name: "Upcoming Events", link: "#" },
     ],
   },
   {

@@ -7,73 +7,54 @@ import {
   Card,
   CardContent,
   Divider,
-  ToggleButtonGroup,
-  ToggleButton,
 } from "@mui/material";
 import Layout from "../Layout";
 
 const packageList = [
   {
-    id: "basic",
-    name: "Basic",
-    monthlyPrice: "$8 / Per Month",
-    annuallyPrice: "$80 / Per Year",
-    description: "Best for blogs and personal websites",
+    id: "blindbox",
+    name: "Blind Box Subscription",
+    monthlyPrice: "$10 / Per Month",
+    annuallyPrice: "$120 / Per Year",
+    description:
+      "Explore new flavors each month of surprise selection of coffee beans delivered to your.",
     features: [
-      "Cookie policy & banner",
-      "Cookie script auto blocker",
-      "10 pages per scan",
-      "10,000 pageviews/month",
-      "Basic customization",
+      "Monthly delivery of hand-picked coffee beans",
+      "One Blind Box with a surprise selection of beans",
     ],
-    customers: "Chosen by 152k customers",
+    customers: "Ideal for those looking to explore new coffee flavors",
   },
   {
-    id: "premium",
-    name: "Premium",
-    monthlyPrice: "$39 / Per Month",
-    annuallyPrice: "$390 / Per Year",
-    description: "Best for small businesses and startups",
+    id: "education",
+    name: "Educational Subscription",
+    monthlyPrice: "$30 / Per Month",
+    annuallyPrice: "$330 / Per Year",
+    description:
+      "Learn coffee brewing techniques through exclusive online courses and workshops.",
     features: [
-      "Cookie policy & banner",
-      "Cookie script auto blocker",
-      "Privacy regulation monitoring",
-      "1000 pages per scan",
-      "100,000 pageviews/month",
-      "Geo-targeted cookie banner",
-      "Remove Coonsept™ logo",
+      "Access to monthly online courses on coffee brewing",
+      "Participation in monthly live workshops",
     ],
-    customers: "Chosen by 82k customers",
+    customers:
+      "Perfect for beginners and enthusiasts wanting to perfect their brewing skills",
   },
   {
-    id: "enterprise",
-    name: "Enterprise",
-    monthlyPrice: "Custom",
-    annuallyPrice: "Custom",
-    description: "Best for high traffic websites and resellers",
+    id: "member",
+    name: "Membership Subscription",
+    monthlyPrice: "$15 / Per Month",
+    annuallyPrice: "$165 / Per Year",
+    description:
+      "Enjoy exclusive member benefits and promotions throughout the year.",
     features: [
-      "Everything in Premium Plan",
-      "Compliance consulting",
-      "Training & onboarding",
-      "Unlimited pages per scan",
-      "Advanced customization",
+      "Monthly promotions exclusive to members",
+      "Special birthday promotion",
+      "10% discount on all additional purchases",
     ],
-    customers: "Chosen by 16k enterprises",
+    customers: "Great for regular customers seeking extra benefits and savings",
   },
 ];
 
 const PackagePage = () => {
-  const [pricingPeriod, setPricingPeriod] = useState("monthly");
-
-  const handleToggle = (
-    event: React.MouseEvent<HTMLElement>,
-    newPeriod: string | null
-  ) => {
-    if (newPeriod !== null) {
-      setPricingPeriod(newPeriod);
-    }
-  };
-
   return (
     <Layout>
       <Box
@@ -93,25 +74,10 @@ const PackagePage = () => {
           Join over 1 Million user using Brewed in chaos
         </Typography>
         <Typography variant="body1" align="center" sx={{ mb: 4 }}>
-          <span>14-day free trial</span> • <span>Cancel anytime</span> •{" "}
-          <span>Secure payment</span>
+          <span>Cancel anytime</span> • <span>Secure payment</span>
         </Typography>
 
-        <Box sx={{ display: "flex", justifyContent: "center", mb: 4 }}>
-          <ToggleButtonGroup
-            value={pricingPeriod}
-            exclusive
-            onChange={handleToggle}
-            aria-label="pricing period"
-          >
-            <ToggleButton value="monthly" aria-label="monthly">
-              Monthly
-            </ToggleButton>
-            <ToggleButton value="annually" aria-label="annually">
-              Annually
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </Box>
+        <Box sx={{ display: "flex", justifyContent: "center", mb: 4 }}></Box>
 
         {/* Package Cards */}
         <Grid container spacing={4} justifyContent="center">
@@ -129,9 +95,7 @@ const PackagePage = () => {
                 <CardContent>
                   <Typography variant="body2">{pkg.customers}</Typography>
                   <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
-                    {pricingPeriod === "monthly"
-                      ? pkg.monthlyPrice
-                      : pkg.annuallyPrice}
+                    {pkg.monthlyPrice}
                   </Typography>
                   <Typography variant="body1" sx={{ mb: 2 }}>
                     {pkg.description}
@@ -153,14 +117,12 @@ const PackagePage = () => {
                     ))}
                   </ul>
                   <Button
-                    variant="contained"
-                    sx={{ mt: 2 }}
-                    fullWidth
-                    disabled={pkg.id === "enterprise"} // Example: Enterprise plan needs contact
+                  // variant="contained"
+                  // sx={{ mt: 2 }}
+                  // fullWidth
+                  // disabled={pkg.id === "enterprise"} // Example: Enterprise plan needs contact
                   >
-                    {pkg.id === "enterprise"
-                      ? "Contact sales"
-                      : "Start 14-day free trial"}
+                    Join Now
                   </Button>
                 </CardContent>
               </Card>

@@ -215,12 +215,14 @@ const CartPage = () => {
                     <TextField
                       label="Delivery Address"
                       fullWidth
+                      required
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
                     />
 
                     <TextField
                       label="Mobile No"
+                      required
                       fullWidth
                       value={mobile}
                       onChange={(e) => setMobile(e.target.value)}
@@ -228,6 +230,7 @@ const CartPage = () => {
 
                     <TextField
                       label="Email"
+                      required
                       fullWidth
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}

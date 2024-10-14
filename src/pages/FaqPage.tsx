@@ -88,7 +88,7 @@ const FaqPage = () => {
               sx={{
                 backgroundColor: "secondary.main",
                 mb: 2,
-                borderRadius: "20px",
+                // borderRadius: "20px",
               }}
             >
               <AccordionSummary
