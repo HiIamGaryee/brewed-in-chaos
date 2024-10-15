@@ -1,10 +1,9 @@
 import { ReactNode, useState } from "react";
 import { Box, Paper } from "@mui/material";
-import Sidebar from "../components/sidebar";
 import Footer from "../components/Footer";
 import Navbar from "../components/navbar";
 // import Navbar from "../components/navbar";
-import { Button, Dialog } from "@mui/material";
+import { Dialog } from "@mui/material";
 import AiBot from "../components/AiBot";
 import botImg from "../assets/brewed-in-chaos/bot-ai-img.png";
 
