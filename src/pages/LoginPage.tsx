@@ -14,9 +14,11 @@ import { LoginParams, postLogin } from "../api"; // Adjust the path as necessary
 import loginBg from "../assets/login-bg.jpg";
 import { useAppMutation } from "../hooks/useAppMutation";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -62,7 +64,8 @@ const LoginPage = () => {
           <img
             src="/logo.png"
             alt="Logo"
-            style={{ maxHeight: 80, marginRight: 16 }}
+            style={{ maxHeight: 80, marginRight: 16, cursor: "pointer" }}
+            onClick={() => navigate(`/`)}
           />
           <Box>
             <Typography variant="h5">Sign In</Typography>

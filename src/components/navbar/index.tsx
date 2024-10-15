@@ -3,9 +3,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Typography, AppBar, Toolbar, Box } from "@mui/material";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import LoginIcon from "@mui/icons-material/Login"; // Assuming you have a login icon
-import LocalMoviesRoundedIcon from "@mui/icons-material/LocalMoviesRounded";
-import BookmarksRoundedIcon from "@mui/icons-material/BookmarksRounded";
-import LiveTvRoundedIcon from "@mui/icons-material/LiveTvRounded";
 import CottageRoundedIcon from "@mui/icons-material/CottageRounded";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import { useAuth } from "../../AuthProvider";
@@ -75,7 +72,8 @@ const Navbar = () => {
           <img
             src="/logo.png"
             alt="Logo"
-            style={{ maxHeight: 50, marginRight: 16 }}
+            style={{ maxHeight: 50, marginRight: 16, cursor: "pointer" }}
+            onClick={() => navigate(`/`)}
           />
         </Box>
         <Box sx={{ display: "flex", gap: 2 }}>
