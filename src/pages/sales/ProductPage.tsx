@@ -146,7 +146,7 @@ const ProductPage = () => {
             borderRadius: "8px",
           }}
         >
-          🚀 Successfully add to Cart!
+          🚀 Successfully submitted!
         </Paper>
       )}
     </Layout>

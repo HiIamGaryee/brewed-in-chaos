@@ -10,11 +10,15 @@ import {
   TableBody,
   TableCell,
   TableContainer,
+  Dialog,
+  DialogActions,
+  DialogTitle,
   TableHead,
   TableRow,
   Stack,
   Grid,
   TextField,
+  Paper,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Layout from "../../Layout";
@@ -22,7 +26,8 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import { useAppMutation } from "../../hooks/useAppMutation";
 import { CheckoutParams, postCheckout } from "../../api/admin";
-
+import AccountBalanceRoundedIcon from "@mui/icons-material/AccountBalanceRounded";
+import CurrencyBitcoinRoundedIcon from "@mui/icons-material/CurrencyBitcoinRounded";
 type CartProduct = {
   name: string;
   code: string;
@@ -39,10 +44,13 @@ const CartPage = () => {
   const { mutate, reset } = useAppMutation(postCheckout, {
     onSuccess: () => {
       reset();
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
       setProducts([]); // Clear cart after successful checkout
       localStorage.removeItem("cart"); // Clear localStorage cart
     },
   });
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -74,7 +82,13 @@ const CartPage = () => {
     return sum + item.price * item.quantity;
   }, 0);
 
+  const [open, setOpen] = useState(false);
+
   const handleCheckout = () => {
+    setOpen(true); // Open the dialog instead of calling mutate directly
+  };
+
+  const handleConfirmCheckout = () => {
     const checkoutData: CheckoutParams = {
       shipping: "0",
       total: subtotal.toFixed(2),
@@ -84,13 +98,16 @@ const CartPage = () => {
       status: "pending",
       products: products.map(({ code, price, quantity }) => ({
         code,
-        price: price.toString(), // Ensure price is a string
+        price: price.toString(),
         quantity,
       })),
     };
-
-    // Call the mutate function to submit the checkout
     mutate(checkoutData);
+    setOpen(false); // Close the dialog after confirming
+  };
+
+  const handleClose = () => {
+    setOpen(false); // Close the dialog without proceeding
   };
 
   return (
@@ -250,6 +267,40 @@ const CartPage = () => {
           </Card>
         </Grid>
       </Grid>
+      {showSuccess && (
+        <Paper
+          elevation={4}
+          sx={{
+            position: "absolute",
+            bottom: 120,
+            right: 16,
+            padding: 2,
+            borderRadius: "8px",
+          }}
+        >
+          🛍️ Successfully add to Cart!
+        </Paper>
+      )}
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Confirm Payment Method</DialogTitle>
+
+        <DialogActions sx={{ display: "flex", gap: 2, p: 2 }}>
+          <Button
+            onClick={handleConfirmCheckout}
+            color="primary"
+            startIcon={<CurrencyBitcoinRoundedIcon />}
+          >
+            Cryptocurrency
+          </Button>
+          <Button
+            onClick={handleConfirmCheckout}
+            color="primary"
+            startIcon={<AccountBalanceRoundedIcon />}
+          >
+            Bank Transfer
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Layout>
   );
 };

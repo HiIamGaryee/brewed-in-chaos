@@ -220,7 +220,7 @@ const HomePage = () => {
               md={3}
               key={item._id}
               sx={{ mb: 4 }}
-              onClick={() => navigate(`/product/${item.code}`)}
+              // onClick={() => navigate(`/product/${item.code}`)}
             >
               <Card sx={{ mb: 2 }}>
                 <CardContent>
@@ -229,7 +229,6 @@ const HomePage = () => {
                     src={require(`../assets/brewed-in-chaos/package-face/${item.code}.png`)}
                     alt="Best Seller Image"
                     sx={{
-                      cursor: "pointer",
                       mt: { xs: 8, md: 0 },
                       p: 1,
                       width: 1,
