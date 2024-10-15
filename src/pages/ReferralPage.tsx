@@ -1,4 +1,4 @@
-import React from "react"; 
+import React from "react";
 import {
   Box,
   Typography,
@@ -71,7 +71,8 @@ const ReferralPage = () => {
           </Typography>
           <Typography variant="body1" sx={{ mt: 2 }}>
             Get a 10% off for every successful referral you make. When your
-            friend purchases coffee through your referral code, each of you will get a discount on your next order.
+            friend purchases coffee through your referral code, each of you will
+            get a discount on your next order.
           </Typography>
         </Box>
 
@@ -80,7 +81,14 @@ const ReferralPage = () => {
           <Grid container justifyContent="center">
             <Grid item xs={12} md={9}>
               <Card>
-                <CardContent sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexDirection: { xs: 'column', md: 'row' } }}>
+                <CardContent
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    flexDirection: { xs: "column", md: "row" },
+                  }}
+                >
                   <Box sx={{ textAlign: "center", mb: { xs: 2, md: 0 } }}>
                     <Typography variant="h4" fontWeight="bold" sx={{ mb: 2 }}>
                       Send Referral Code to Friends
@@ -102,7 +110,7 @@ const ReferralPage = () => {
                       }}
                     >
                       <Typography variant="body2" sx={{ flexGrow: 1 }}>
-                        https://brewedinchaos.com/referral/1234
+                        https://brewed-in-chaos.vercel.app/referral/1234
                       </Typography>
                       <Button variant="contained">Copy Link</Button>
                     </Box>
@@ -117,13 +125,21 @@ const ReferralPage = () => {
                     >
                       <Button
                         variant="contained"
-                        sx={{ backgroundColor: "#0077b5", minWidth: 48, minHeight: 48 }}
+                        sx={{
+                          backgroundColor: "#0077b5",
+                          minWidth: 48,
+                          minHeight: 48,
+                        }}
                       >
                         <LinkedInIcon />
                       </Button>
                       <Button
                         variant="contained"
-                        sx={{ backgroundColor: "#1DA1F2", minWidth: 48, minHeight: 48 }}
+                        sx={{
+                          backgroundColor: "#1DA1F2",
+                          minWidth: 48,
+                          minHeight: 48,
+                        }}
                       >
                         <TwitterIcon />
                       </Button>
@@ -134,8 +150,8 @@ const ReferralPage = () => {
                     </Button>
                   </Box>
 
-                  <img 
-                    src={humanWithCoffee} 
+                  <img
+                    src={humanWithCoffee}
                     alt="Referral Program"
                     style={{
                       maxWidth: "60%", // Adjusted size
