@@ -78,42 +78,35 @@ const Footer = () => {
         flexWrap: "wrap",
       }}
     >
-      <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" } }}>
-        <img
-          src="/logo.png"
-          alt="Logo"
-          style={{ maxHeight: 50, marginRight: 16, objectFit: "cover" }}
-          onClick={() => navigate(`/`)}
-        />
-        {footerLinks.map((section) => (
-          <Box key={section.title} sx={{ flex: 1, minWidth: 200 }}>
-            <Typography variant="h6" sx={{ mb: 2, color: "white" }}>
-              {section.title}
-            </Typography>
-            {section.links.map((item) => (
-              <Link
-                key={item.name}
-                to={item.link}
-                style={{ textDecoration: "none" }}
+      {footerLinks.map((section) => (
+        <Box key={section.title} sx={{ flex: 1, minWidth: 200 }}>
+          <Typography variant="h6" sx={{ mt: 4, color: "white" }}>
+            {section.title}
+          </Typography>
+          {section.links.map((item) => (
+            <Link
+              key={item.name}
+              to={item.link}
+              style={{ textDecoration: "none" }}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "light.main",
+                  mb: 1,
+                  "&:hover": {
+                    color: "#4caf50",
+                  },
+                }}
               >
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: "light.main",
-                    mb: 1,
-                    "&:hover": {
-                      color: "#4caf50",
-                    },
-                  }}
-                >
-                  {item.name}
-                </Typography>
-              </Link>
-            ))}
-          </Box>
-        ))}
-      </Box>
-      <Box sx={{ flex: 1, minWidth: 200 }}>
+                {item.name}
+              </Typography>
+            </Link>
+          ))}
+        </Box>
+      ))}
+
+      <Box sx={{ flex: 1, minWidth: 200, mt: 4 }}>
         <Typography variant="h6" sx={{ mb: 2, color: "white" }}>
           SUBSCRIBE
         </Typography>
