@@ -107,6 +107,8 @@ const ReferralPage = () => {
                         padding: "8px",
                         borderRadius: "4px",
                         mb: 2,
+                        width: "100%",
+                        height: "auto",
                       }}
                     >
                       <Typography variant="body2" sx={{ flexGrow: 1 }}>
@@ -150,15 +152,24 @@ const ReferralPage = () => {
                     </Button>
                   </Box>
 
+                  <Box
+                    sx={{
+                      flexShrink: 0,
+                      width: { xs: "100%", md: "40%"},
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                    >
+
                   <img
                     src={humanWithCoffee}
                     alt="Referral Program"
                     style={{
-                      maxWidth: "60%", // Adjusted size
+                      width: "100%",
                       height: "auto",
-                      marginLeft: "16px",
                     }}
                   />
+                  </Box>
                 </CardContent>
               </Card>
             </Grid>
