@@ -48,8 +48,9 @@ const HomePage = () => {
         container
         p={4}
         sx={{
+          backgroundSize: "cover",
           backgroundImage: `url(${homeBg})`,
-          backgroundSize: "100% 100%",
+          // backgroundSize: "100% 100%",
           minHeight: "300px",
           // backgroundRepeat: "no-repeat",
         }}
@@ -137,15 +138,6 @@ const HomePage = () => {
               mt: { xs: 8, md: 0 },
               maxHeight: "500px",
               display: "none",
-              // animation: "bounce 2s infinite",
-              // "@keyframes bounce": {
-              //   "0%, 100%": {
-              //     transform: "translateY(0)",
-              //   },
-              //   "50%": {
-              //     transform: "translateY(-20px)",
-              //   },
-              // },
             }}
           />
         </Grid>
@@ -169,7 +161,7 @@ const HomePage = () => {
           customers, enhacing user engagement and loyalty.
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center", width: "auto" }}>
-          <Grid container>
+          <Grid container spacing={2}>
             {USPList.map((item, index) => (
               <Grid item xs={12} md={4} key={index}>
                 <Box
@@ -193,7 +185,7 @@ const HomePage = () => {
                 </Box>
               </Grid>
             ))}
-          </Grid>{" "}
+          </Grid>
         </Box>
       </Box>
       <Box

@@ -12,16 +12,15 @@ import {
 import React, { useState } from "react";
 import Layout from "../Layout";
 import { Phone, Email, Instagram, LocationOn } from "@mui/icons-material";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
+// import InstagramIcon from "@mui/icons-material/Instagram";
+// import FacebookIcon from "@mui/icons-material/Facebook";
+// import TwitterIcon from "@mui/icons-material/Twitter";
+// import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MarketingIcon from "@mui/icons-material/LocalOffer";
 import BusinessIcon from "@mui/icons-material/BusinessCenter";
 import CreativeIcon from "@mui/icons-material/Brush";
 import WebIcon from "@mui/icons-material/Web";
-import { useQuery } from "@tanstack/react-query";
-import { ContactUsParams, getAboutUs, postContactUs } from "../api";
+import { ContactUsParams, postContactUs } from "../api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -73,11 +72,6 @@ const services = [
 ];
 
 const AboutUsPage = () => {
-  // const { data: EmailSubscribeList } = useQuery({
-  //   queryKey: ["getEmailSubscribe", 10, 0], // Includes parameters in the query key
-  //   queryFn: () => getEmailSubscribe(10, 0), // Calls the function with parameters
-  // });
-
   const validationSchema = Yup.object({
     email: Yup.string()
       .required("Email is required")
@@ -237,7 +231,7 @@ const AboutUsPage = () => {
               md={6}
               sx={{
                 display: "flex",
-                justifyContent: "space-between",
+                // justifyContent: "space-between",
                 flexDirection: "column",
               }}
             >
@@ -249,7 +243,7 @@ const AboutUsPage = () => {
                   Get In Touch Desc
                 </Typography>
               </Box>
-              <Grid container spacing={2} justifyContent="center">
+              <Grid container spacing={2} justifyContent="center" my={2}>
                 {contactList.map((contact, index) => (
                   <Grid item xs={12} md={6} key={index} gap={2}>
                     <Typography variant="h3">{contact.icon}</Typography>
@@ -260,7 +254,7 @@ const AboutUsPage = () => {
                 ))}
               </Grid>
 
-              <Box sx={{ display: "flex", gap: 2 }}>
+              {/* <Box sx={{ display: "flex", gap: 2 }}>
                 <Link href="#">
                   <FacebookIcon />
                 </Link>
@@ -273,7 +267,7 @@ const AboutUsPage = () => {
                 <Link href="#">
                   <LinkedInIcon />
                 </Link>
-              </Box>
+              </Box> */}
             </Grid>
             <Grid item xs={12} md={6}>
               <form onSubmit={handleSubmit(onSubmit)}>

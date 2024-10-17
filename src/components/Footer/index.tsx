@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Box, Typography, TextField, Paper, Button } from "@mui/material";
 import {
   EmailSubscribeParams,
@@ -32,6 +32,8 @@ const footerLinks = [
 ];
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   const validationSchema = Yup.object({
     email: Yup.string()
       .required("Email is required")
@@ -74,41 +76,43 @@ const Footer = () => {
         width: "100%",
         color: "white",
         flexWrap: "wrap",
-        maxHeight: "250px",
       }}
     >
-      <img
-        src="/logo.png"
-        alt="Logo"
-        style={{ maxHeight: 50, marginRight: 16 }}
-      />
-      {footerLinks.map((section) => (
-        <Box key={section.title} sx={{ flex: 1, minWidth: 200 }}>
-          <Typography variant="h6" sx={{ mb: 2, color: "white" }}>
-            {section.title}
-          </Typography>
-          {section.links.map((item) => (
-            <Link
-              key={item.name}
-              to={item.link}
-              style={{ textDecoration: "none" }}
-            >
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "light.main",
-                  mb: 1,
-                  "&:hover": {
-                    color: "#4caf50",
-                  },
-                }}
+      <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" } }}>
+        <img
+          src="/logo.png"
+          alt="Logo"
+          style={{ maxHeight: 50, marginRight: 16, objectFit: "cover" }}
+          onClick={() => navigate(`/`)}
+        />
+        {footerLinks.map((section) => (
+          <Box key={section.title} sx={{ flex: 1, minWidth: 200 }}>
+            <Typography variant="h6" sx={{ mb: 2, color: "white" }}>
+              {section.title}
+            </Typography>
+            {section.links.map((item) => (
+              <Link
+                key={item.name}
+                to={item.link}
+                style={{ textDecoration: "none" }}
               >
-                {item.name}
-              </Typography>
-            </Link>
-          ))}
-        </Box>
-      ))}
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "light.main",
+                    mb: 1,
+                    "&:hover": {
+                      color: "#4caf50",
+                    },
+                  }}
+                >
+                  {item.name}
+                </Typography>
+              </Link>
+            ))}
+          </Box>
+        ))}
+      </Box>
       <Box sx={{ flex: 1, minWidth: 200 }}>
         <Typography variant="h6" sx={{ mb: 2, color: "white" }}>
           SUBSCRIBE

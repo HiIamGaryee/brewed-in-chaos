@@ -96,12 +96,7 @@ const FaqPage = () => {
                 aria-controls={`panel${index}bh-content`}
                 id={`panel${index}bh-header`}
               >
-                <Typography
-                  variant="h6"
-                  sx={{ flexShrink: 0, wordBreak: "break-word" }}
-                >
-                  {faq.code}
-                </Typography>
+                <Typography variant="h6">{faq.code}</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <Typography variant="body2" textAlign="left">
