@@ -15,7 +15,7 @@ import usq2Img from "../assets/brewed-in-chaos/usq-2.jpeg";
 import usq3Img from "../assets/brewed-in-chaos/usq-3.jpeg";
 import Png from "../assets/brewed-in-chaos/package/SM.png";
 import { useNavigate } from "react-router-dom";
-import homeBg from "../assets/brewedinchaosgif.gif";
+import homeBg from "../assets/brewedinchaosbanner.gif";
 import { getBestSeller } from "../api/admin";
 import { useQuery } from "@tanstack/react-query";
 
@@ -50,8 +50,11 @@ const HomePage = () => {
         sx={{
           backgroundSize: "cover",
           backgroundImage: `url(${homeBg})`,
-          // backgroundSize: "100% 100%",
+          backgroundPosition: "center", 
+          width: "100%", 
           minHeight: "300px",
+          height: "auto", 
+          overflow: "hidden",
           // backgroundRepeat: "no-repeat",
         }}
       >
