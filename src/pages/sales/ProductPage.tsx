@@ -93,7 +93,6 @@ const ProductPage = () => {
                       alt="Product Image"
                       sx={{
                         cursor: "pointer",
-                        mt: { xs: 8, md: 0 },
                         p: 1,
                         width: 1,
                         height: "auto",
