@@ -15,7 +15,8 @@ import usq2Img from "../assets/brewed-in-chaos/usq-2.jpeg";
 import usq3Img from "../assets/brewed-in-chaos/usq-3.jpeg";
 import Png from "../assets/brewed-in-chaos/package/SM.png";
 import { useNavigate } from "react-router-dom";
-import homeBg from "../assets/brewedinchaosbanner.gif";
+import homeBg from "../assets/brewedinchaosLightning.gif";
+import homeIcon from "../assets/brewedinchaosIcon.png";
 import { getBestSeller } from "../api/admin";
 import { useQuery } from "@tanstack/react-query";
 
@@ -44,10 +45,9 @@ const HomePage = () => {
 
   return (
     <Layout>
-      <Grid
-        container
-        p={4}
+      <Box
         sx={{
+          position:"relative",
           backgroundSize: "cover",
           backgroundImage: `url(${homeBg})`,
           backgroundPosition: "center", 
@@ -58,6 +58,19 @@ const HomePage = () => {
           // backgroundRepeat: "no-repeat",
         }}
       >
+        <Box
+        component="img"
+        src={homeIcon}
+        alt="Icon"
+        sx = {{
+          position:"absolute",
+          top:"0",
+          right:"100px",
+          width:"auto",
+          height:"100%",
+          zIndex:10,  
+        }}
+        />
         <Grid
           item
           xs={12}
@@ -144,7 +157,7 @@ const HomePage = () => {
             }}
           />
         </Grid>
-      </Grid>
+      </Box>
       <Box
         sx={{
           display: "flex",
