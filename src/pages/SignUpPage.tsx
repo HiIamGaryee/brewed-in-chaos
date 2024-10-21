@@ -1,12 +1,20 @@
-import { Box, Button, TextField, Link, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  Link,
+  Stack,
+  Typography,
+  Grid,
+} from "@mui/material";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { SignUpParams, postSignUp } from "../api"; // Adjust the path as necessary
-import loginBg from "../assets/login-bg.jpg";
+import loginBg from "../assets/signup-bg.jpeg";
 import { useAppMutation } from "../hooks/useAppMutation";
 import { useTranslation } from "react-i18next";
-
+import EnhancedEncryptionRoundedIcon from "@mui/icons-material/EnhancedEncryptionRounded";
 const SignUpPage = () => {
   const { t } = useTranslation();
   const validationSchema = Yup.object({
@@ -39,117 +47,215 @@ const SignUpPage = () => {
     <Box
       sx={{
         backgroundImage: `url(${loginBg})`,
-        backgroundSize: "contain",
+        backgroundSize: "cover",
         height: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        color: "#fff",
       }}
     >
-      <Paper
-        sx={{
-          minWidth: "300px",
-          backgroundColor: "light.main",
-          padding: "20px",
-        }}
-      >
-        <Box sx={{ display: "flex", alignItems: "center", gap: "2px" }}>
+      <Grid container sx={{ py: 2 }}>
+        <Grid item xs={12} md={7} sx={{ h: 1 }} />
+
+        <Grid
+          item
+          xs={12}
+          md={4}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            p: 4,
+            alignitem: { xs: "center", md: "start" },
+          }}
+        >
           <img
             src="/logo.png"
             alt="Logo"
-            style={{ maxHeight: 80, marginRight: 16 }}
+            style={{
+              height: "auto",
+              width: 120,
+              cursor: "pointer",
+              objectFit: "cover",
+            }}
           />
+
           <Box>
-            <Typography variant="h5">Sign Up</Typography>
-            <Typography variant="body2">{t("welcome_desc")}</Typography>
-          </Box>
-        </Box>
-
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <TextField
-            {...register("email")}
-            placeholder="Email address"
-            type="email"
-            fullWidth
-            error={Boolean(errors.email)}
-            helperText={errors.email ? errors.email.message : ""}
-            variant="outlined"
-            sx={{
-              mb: 2,
-              background: "#fff",
-            }}
-          />
-
-          <TextField
-            {...register("password")}
-            placeholder="Password"
-            type="password"
-            fullWidth
-            error={Boolean(errors.password)}
-            helperText={errors.password ? errors.password.message : ""}
-            variant="outlined"
-            sx={{
-              mb: 1,
-              background: "#fff",
-            }}
-          />
-
-          <TextField
-            {...register("password_confirmation")}
-            placeholder="Confirm Password"
-            type="password"
-            fullWidth
-            error={Boolean(errors.password_confirmation)}
-            helperText={
-              errors.password_confirmation
-                ? errors.password_confirmation.message
-                : ""
-            }
-            variant="outlined"
-            sx={{
-              mb: 1,
-              background: "#fff",
-            }}
-          />
-
-          <TextField
-            {...register("mobile_prefix_no")}
-            placeholder="Mobile Prefix"
-            fullWidth
-            error={Boolean(errors.mobile_prefix_no)}
-            helperText={
-              errors.mobile_prefix_no ? errors.mobile_prefix_no.message : ""
-            }
-            variant="outlined"
-            sx={{
-              mb: 1,
-              background: "#fff",
-            }}
-          />
-
-          <TextField
-            {...register("mobile_no")}
-            placeholder="Mobile Number"
-            fullWidth
-            error={Boolean(errors.mobile_no)}
-            helperText={errors.mobile_no ? errors.mobile_no.message : ""}
-            variant="outlined"
-            sx={{
-              mb: 1,
-              background: "#fff",
-            }}
-          />
-
-          <Button variant="contained" fullWidth sx={{ mt: 2 }} type="submit">
-            Sign Up
-          </Button>
-          <Box mt={2}>
-            <Link href="/login" underline="hover" sx={{ color: "#000" }}>
-              Already have an account? Sign in
+            <Typography variant="h4" color="light.main">
+              Create New Account !
+            </Typography>
+            <Link href="/login" underline="none">
+              <Typography variant="body2" color="light.main" pb={4}>
+                Already A Member?{" "}
+                <span style={{ color: "#e2994f", fontWeight: "bold" }}>
+                  Log in
+                </span>
+              </Typography>
             </Link>
           </Box>
-        </form>
-      </Paper>
+
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Stack spacing={4}>
+              <TextField
+                {...register("email")}
+                placeholder="Email address"
+                type="email"
+                fullWidth
+                error={Boolean(errors.email)}
+                helperText={errors.email ? errors.email.message : ""}
+                variant="filled"
+                sx={{
+                  "& .MuiFilledInput-input": {
+                    color: "light.main",
+                  },
+                  "& .MuiFilledInput-root": {
+                    "&::before": { borderBottomColor: "light.main" },
+                    "&::after": { borderBottomColor: "light.main" },
+                  },
+                  "& .MuiInputBase-input::placeholder": {
+                    color: "white",
+                    opacity: 1,
+                  },
+                }}
+              />
+
+              <TextField
+                {...register("password")}
+                placeholder="Password"
+                type="password"
+                fullWidth
+                error={Boolean(errors.password)}
+                helperText={errors.password ? errors.password.message : ""}
+                variant="filled"
+                sx={{
+                  "& .MuiFilledInput-input": {
+                    color: "light.main",
+                  },
+                  "& .MuiFilledInput-root": {
+                    "&::before": { borderBottomColor: "light.main" },
+                    "&::after": { borderBottomColor: "light.main" },
+                  },
+                  "& .MuiInputBase-input::placeholder": {
+                    color: "white",
+                    opacity: 1,
+                  },
+                }}
+              />
+
+              <TextField
+                {...register("password_confirmation")}
+                placeholder="Confirm Password"
+                type="password"
+                fullWidth
+                error={Boolean(errors.password_confirmation)}
+                helperText={
+                  errors.password_confirmation
+                    ? errors.password_confirmation.message
+                    : ""
+                }
+                variant="filled"
+                sx={{
+                  "& .MuiFilledInput-input": {
+                    color: "light.main",
+                  },
+                  "& .MuiFilledInput-root": {
+                    "&::before": { borderBottomColor: "light.main" },
+                    "&::after": { borderBottomColor: "light.main" },
+                  },
+                  "& .MuiInputBase-input::placeholder": {
+                    color: "white",
+                    opacity: 1,
+                  },
+                }}
+              />
+
+              <TextField
+                {...register("mobile_prefix_no")}
+                placeholder="Mobile Prefix"
+                fullWidth
+                error={Boolean(errors.mobile_prefix_no)}
+                helperText={
+                  errors.mobile_prefix_no ? errors.mobile_prefix_no.message : ""
+                }
+                variant="filled"
+                sx={{
+                  "& .MuiFilledInput-input": {
+                    color: "light.main",
+                  },
+                  "& .MuiFilledInput-root": {
+                    "&::before": { borderBottomColor: "light.main" },
+                    "&::after": { borderBottomColor: "light.main" },
+                  },
+                  "& .MuiInputBase-input::placeholder": {
+                    color: "white",
+                    opacity: 1,
+                  },
+                }}
+              />
+
+              <TextField
+                {...register("mobile_no")}
+                placeholder="Mobile Number"
+                fullWidth
+                error={Boolean(errors.mobile_no)}
+                helperText={errors.mobile_no ? errors.mobile_no.message : ""}
+                variant="filled"
+                sx={{
+                  "& .MuiFilledInput-input": {
+                    color: "light.main",
+                  },
+                  "& .MuiFilledInput-root": {
+                    "&::before": { borderBottomColor: "light.main" },
+                    "&::after": { borderBottomColor: "light.main" },
+                  },
+                  "& .MuiInputBase-input::placeholder": {
+                    color: "white",
+                    opacity: 1,
+                  },
+                }}
+              />
+
+              <Button
+                variant="contained"
+                fullWidth
+                sx={{ mt: 2 }}
+                type="submit"
+              >
+                Sign Up
+              </Button>
+            </Stack>
+            <Box
+              mt={2}
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <Link href="#" underline="none">
+                <Typography
+                  variant="body2"
+                  color="light.main"
+                  textAlign="center"
+                  sx={{ cursor: "pointer" }}
+                >
+                  Forgot Password ?
+                </Typography>
+              </Link>
+              <Link href="/" underline="none">
+                <Typography
+                  variant="body2"
+                  color="light.main"
+                  sx={{ cursor: "pointer" }}
+                >
+                  Back Home
+                </Typography>
+              </Link>
+            </Box>
+          </form>
+        </Grid>
+        <Grid item xs={12} md={1} sx={{ h: 1 }} />
+      </Grid>
     </Box>
   );
 };
